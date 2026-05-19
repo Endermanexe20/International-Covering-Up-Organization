@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ام عبير للمذلكره على السرير | Grade 3</title>
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+<body>
+    <div class="portal-container">
+        <div class="header-right" style="position: absolute; top: 24px; right: 24px; z-index: 100;">
+            <button id="themeToggle" class="theme-btn" onclick="toggleTheme()" title="Toggle Theme">
+                <i data-lucide="monitor" class="theme-icon"></i>
+                <span>System</span>
+            </button>
+        </div>
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        
+        <div class="portal-content">
+            <header class="portal-header">
+                <img src="assets/images/logo.png" alt="I.C.U.O Logo" style="max-height: 180px; max-width: 100%; margin-bottom: 24px;">
+                <h1>(I.C.U.O) International Covering Up Organization</h1>
+                <p>Select your discipline to access interactive workshops, specialized question banks, and comprehensive guides.</p>
+            </header>
+
+            <div class="choice-grid">
+                <a href="physics_study.html" class="choice-card physics-theme">
+                    <div class="choice-icon"><i data-lucide="atom"></i></div>
+                    <div class="choice-title">Physics</div>
+                    <div class="choice-desc">Master electromagnetism, quantum mechanics, and modern electronics with interactive visuals.</div>
+                    <div class="choice-btn">Open Module</div>
+                </a>
+
+                <a href="web_programming_study.html" class="choice-card programming-theme">
+                    <div class="choice-icon"><i data-lucide="code-2"></i></div>
+                    <div class="choice-title">Programming</div>
+                    <div class="choice-desc">Explore data structures, algorithmic logic, and web development through practical workshops.</div>
+                    <div class="choice-btn">Open Module</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
