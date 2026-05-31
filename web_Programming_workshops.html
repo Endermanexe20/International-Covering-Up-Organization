@@ -1,0 +1,4107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Web Programming Workshops – ام عبير للمذاكره على السرير | Grade 3 - Interactive counters, product CRUD APIs, modular PHP pages, and testing suites.">
+  <title>Web Programming Workshops | ام عبير للمذاكره على السرير | Grade 3</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="workshops-page">
+  <div class="progress-bar" id="progress"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="index.html" class="portal-link" title="Back to Portal">
+          <i data-lucide="layout-grid"></i>
+        </a>
+        <div class="logo"><i data-lucide="terminal" class="icon-code" style="color: var(--u1);"></i> WEB Workshops
+          <span>&mdash; ام عبير للمذاكره على السرير | Grade 3</span></div>
+      </div>
+      <div class="header-right">
+        <div class="search-wrap">
+          <i data-lucide="search" class="icon-search"></i>
+          <input type="text" id="searchInput" placeholder="Search workshops..." oninput="handleSearch(this.value)">
+          <div class="search-actions">
+            <button id="searchFilterBtn" class="search-filter-btn" onclick="toggleSearchFilter()"
+              title="Filter by Unit">
+              <i data-lucide="sliders-horizontal"></i>
+            </button>
+            <i data-lucide="x" id="clearSearchBtn" class="clear-icon" onclick="clearSearch()" style="display:none;"
+              title="Clear search"></i>
+          </div>
+          <div id="searchFilterDropdown" class="search-filter-dropdown">
+            <div class="filter-header"><span>Filter by Unit</span></div>
+            <div class="filter-options">
+              <label class="filter-option"><input type="checkbox" value="all" checked
+                  onchange="handleFilterChange('all')"><span>All Units</span></label>
+              <label class="filter-option" data-filter-unit="1"><input type="checkbox" value="unit-1" checked
+                  onchange="handleFilterChange('unit-1')"><span>Unit 1 — React</span></label>
+              <label class="filter-option" data-filter-unit="2"><input type="checkbox" value="unit-2" checked
+                  onchange="handleFilterChange('unit-2')"><span>Unit 2 — Node.js</span></label>
+              <label class="filter-option" data-filter-unit="3"><input type="checkbox" value="unit-3" checked
+                  onchange="handleFilterChange('unit-3')"><span>Unit 3 — PHP</span></label>
+              <label class="filter-option" data-filter-unit="4"><input type="checkbox" value="unit-4" checked
+                  onchange="handleFilterChange('unit-4')"><span>Unit 4 — Adv PHP</span></label>
+              <label class="filter-option" data-filter-unit="5"><input type="checkbox" value="unit-5" checked
+                  onchange="handleFilterChange('unit-5')"><span>Unit 5 — Laravel</span></label>
+              <label class="filter-option" data-filter-unit="6"><input type="checkbox" value="unit-6" checked
+                  onchange="handleFilterChange('unit-6')"><span>Unit 6 — Python GUI</span></label>
+              <label class="filter-option" data-filter-unit="7"><input type="checkbox" value="unit-7" checked
+                  onchange="handleFilterChange('unit-7')"><span>Unit 7 — Design Patterns</span></label>
+              <label class="filter-option" data-filter-unit="8"><input type="checkbox" value="unit-8" checked
+                  onchange="handleFilterChange('unit-8')"><span>Unit 8 — Testing</span></label>
+            </div>
+          </div>
+        </div>
+
+        <button id="themeToggle" class="theme-btn" onclick="toggleTheme()" title="Toggle Theme"><i
+            data-lucide="contrast" class="theme-icon"></i><span>System</span></button>
+      </div>
+    </div>
+  </header>
+  <div class="tabs">
+    <button class="tab-btn active" data-unit="0" onclick="showUnit(0, this)"><i data-lucide="book"></i> All
+      Workshops</button>
+    <button class="tab-btn" data-unit="1" onclick="showUnit(1, this)"><i data-lucide="blocks"></i> Unit 1 &ndash;
+      React</button>
+    <button class="tab-btn" data-unit="2" onclick="showUnit(2, this)"><i data-lucide="server"></i> Unit 2 &ndash;
+      Node.js</button>
+    <button class="tab-btn" data-unit="3" onclick="showUnit(3, this)"><i data-lucide="file-code"></i> Unit 3 &ndash;
+      PHP</button>
+    <button class="tab-btn" data-unit="4" onclick="showUnit(4, this)"><i data-lucide="terminal"></i> Unit 4 &ndash; Adv
+      PHP</button>
+    <button class="tab-btn" data-unit="5" onclick="showUnit(5, this)"><i data-lucide="box"></i> Unit 5 &ndash;
+      Laravel</button>
+    <button class="tab-btn" data-unit="6" onclick="showUnit(6, this)"><i data-lucide="monitor-play"></i> Unit 6 &ndash;
+      Python GUI</button>
+    <button class="tab-btn" data-unit="7" onclick="showUnit(7, this)"><i data-lucide="layers"></i> Unit 7 &ndash; Design
+      Patterns</button>
+    <button class="tab-btn" data-unit="8" onclick="showUnit(8, this)"><i data-lucide="check-square"></i> Unit 8 &ndash;
+      Software Testing</button>
+  </div>
+  <main>
+
+    <div class="nm" id="nm">No workshops match your search.</div>
+    <div class="unit-section visible" data-unit="1" id="unit17">
+      <div class="unit-header" style="--unit-color: var(--unit17)">
+        <div class="unit-num">1</div>
+        <div>
+          <div class="unit-title">Unit 1 &ndash; React</div>
+          <div class="unit-subtitle">useState · Props · map() · Bootstrap · Theme Switcher</div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="1">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(168,85,247,.15); padding: 6px 8px; border-radius: 8px; display:inline-flex; align-items:center;"><i
+                data-lucide="hash" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Interactive Counter — WebTech Solutions</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">WebTech Solutions · <span
+                  class="we">Exams: 1, 2</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag"
+                style="background:rgba(168,85,247,.15);color:#a855f7">useState</span><span class="tag"
+                style="background:rgba(34,211,238,.12);color:#22d3ee">Bootstrap</span><span class="tag"
+                style="background:rgba(74,222,128,.12);color:#4ade80">React</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build an interactive counter for "WebTech Solutions" using React useState and Bootstrap with
+              increment, decrement, and reset.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li><b>State:</b> useState hook, initialize to 0</li>
+              <li><b>Functions:</b> increment (+1) · decrement (-1) · reset (0)</li>
+              <li><b>UI:</b> 3 Bootstrap buttons + large counter display</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>Install Bootstrap</div>
+              <div class="cb-wrap">
+                <div class="cb-head">
+                  <span class="cb-lang">bash</span>
+                  <button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-bash">npm install bootstrap</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>App.jsx</div>
+              <div class="fp">📄 src/App.jsx</div><textarea id="c-counter" class="raw-code" style="display:none">import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+function App() {
+  const [counter, setCounter] = useState(0);
+
+  const increment = () => setCounter(counter + 1);
+  const decrement = () => setCounter(counter - 1);
+  const reset     = () => setCounter(0);
+
+  return (
+    <div className="container text-center mt-5">
+      <h2 className="mb-4">WebTech Solutions Counter</h2>
+      <div className="display-1 fw-bold mb-4 p-4 border rounded bg-light">
+        {counter}
+      </div>
+      <div className="d-flex justify-content-center gap-3">
+        <button className="btn btn-success btn-lg" onClick={increment}>+ Increment</button>
+        <button className="btn btn-danger btn-lg"  onClick={decrement}>- Decrement</button>
+        <button className="btn btn-secondary btn-lg" onClick={reset}>Reset</button>
+      </div>
+    </div>
+  );
+}
+
+export default App;</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head">
+                  <span class="cb-lang">jsx</span>
+                  <button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-jsx">import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+function App() {
+  const [counter, setCounter] = useState(0);
+
+  const increment = () =&gt; setCounter(counter + 1);
+  const decrement = () =&gt; setCounter(counter - 1);
+  const reset     = () =&gt; setCounter(0);
+
+  return (
+    &lt;div className="container text-center mt-5"&gt;
+      &lt;h2 className="mb-4"&gt;WebTech Solutions Counter&lt;/h2&gt;
+      &lt;div className="display-1 fw-bold mb-4 p-4 border rounded bg-light"&gt;
+        {counter}
+      &lt;/div&gt;
+      &lt;div className="d-flex justify-content-center gap-3"&gt;
+        &lt;button className="btn btn-success btn-lg" onClick={increment}&gt;+ Increment&lt;/button&gt;
+        &lt;button className="btn btn-danger btn-lg"  onClick={decrement}&gt;- Decrement&lt;/button&gt;
+        &lt;button className="btn btn-secondary btn-lg" onClick={reset}&gt;Reset&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-jsx dl"
+              onclick="dlCode('c-counter','Counter_App.jsx')">⬇ Counter_App.jsx</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="1">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(168,85,247,.15); padding: 6px 8px; border-radius: 8px; display:inline-flex; align-items:center;"><i
+                data-lucide="layers" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Portfolio Cards — DesignStudio Pro</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">DesignStudio Pro · <span
+                  class="we">Exams: 5, 6</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(168,85,247,.15);color:#a855f7">map()</span><span
+                class="tag" style="background:rgba(168,85,247,.15);color:#a855f7">Props</span><span class="tag"
+                style="background:rgba(34,211,238,.12);color:#22d3ee">Bootstrap</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a portfolio showcase for "DesignStudio Pro" using a reusable Card component and map() to
+              render cards dynamically.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li><b>Data:</b> Array of card objects (id, title, text, image)</li>
+              <li><b>Card Component:</b> Reusable component with props</li>
+              <li><b>Rendering:</b> Use map() with key prop</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>Card.jsx — Reusable Component</div>
+              <div class="fp">📄 src/Card.jsx</div><textarea id="c-card" class="raw-code" style="display:none">import React from "react";
+
+function Card({ title, text, image }) {
+  return (
+    <div className="card h-100 shadow-sm">
+      <img src={image} className="card-img-top" alt={title}
+           style={{ height: "180px", objectFit: "cover" }} />
+      <div className="card-body">
+        <h5 className="card-title">{title}</h5>
+        <p className="card-text text-muted">{text}</p>
+      </div>
+    </div>
+  );
+}
+
+export default Card;</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head">
+                  <span class="cb-lang">jsx</span>
+                  <button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-jsx">import React from "react";
+
+function Card({ title, text, image }) {
+  return (
+    &lt;div className="card h-100 shadow-sm"&gt;
+      &lt;img src={image} className="card-img-top" alt={title}
+           style={{ height: "180px", objectFit: "cover" }} /&gt;
+      &lt;div className="card-body"&gt;
+        &lt;h5 className="card-title"&gt;{title}&lt;/h5&gt;
+        &lt;p className="card-text text-muted"&gt;{text}&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Card;</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>App.jsx — Render with map()</div>
+              <div class="fp">📄 src/App.jsx</div><textarea id="c-app-cards" class="raw-code" style="display:none">import React from "react";
+import Card from "./Card";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+function App() {
+  const cardsData = [
+    { id:1, title:"Web Design",   text:"Modern responsive websites.",
+      image:"https://via.placeholder.com/300x180/6366f1/white?text=Web" },
+    { id:2, title:"UI/UX Design", text:"User experience excellence.",
+      image:"https://via.placeholder.com/300x180/a855f7/white?text=UX"  },
+    { id:3, title:"Branding",     text:"Creative brand identity.",
+      image:"https://via.placeholder.com/300x180/22d3ee/white?text=Brand"},
+    { id:4, title:"Photography",  text:"Professional photography.",
+      image:"https://via.placeholder.com/300x180/4ade80/white?text=Photo"},
+  ];
+  return (
+    <div className="container mt-5">
+      <h2 className="text-center mb-4">DesignStudio Pro Portfolio</h2>
+      <div className="row row-cols-1 row-cols-md-4 g-4">
+        {cardsData.map((card) => (
+          <div key={card.id} className="col">
+            <Card title={card.title} text={card.text} image={card.image} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+export default App;</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head">
+                  <span class="cb-lang">jsx</span>
+                  <button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-jsx">import React from "react";
+import Card from "./Card";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+function App() {
+  const cardsData = [
+    { id:1, title:"Web Design",   text:"Modern responsive websites.",
+      image:"https://via.placeholder.com/300x180/6366f1/white?text=Web" },
+    { id:2, title:"UI/UX Design", text:"User experience excellence.",
+      image:"https://via.placeholder.com/300x180/a855f7/white?text=UX"  },
+    { id:3, title:"Branding",     text:"Creative brand identity.",
+      image:"https://via.placeholder.com/300x180/22d3ee/white?text=Brand"},
+    { id:4, title:"Photography",  text:"Professional photography.",
+      image:"https://via.placeholder.com/300x180/4ade80/white?text=Photo"},
+  ];
+  return (
+    &lt;div className="container mt-5"&gt;
+      &lt;h2 className="text-center mb-4"&gt;DesignStudio Pro Portfolio&lt;/h2&gt;
+      &lt;div className="row row-cols-1 row-cols-md-4 g-4"&gt;
+        {cardsData.map((card) =&gt; (
+          &lt;div key={card.id} className="col"&gt;
+            &lt;Card title={card.title} text={card.text} image={card.image} /&gt;
+          &lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+export default App;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-jsx dl"
+              onclick="dlCode('c-card','Card.jsx')">⬇ Card.jsx</button><button class="dl-jsx dl"
+              onclick="dlCode('c-app-cards','Portfolio_App.jsx')">⬇ Portfolio_App.jsx</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="1">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(168,85,247,.15); padding: 6px 8px; border-radius: 8px; display:inline-flex; align-items:center;"><i
+                data-lucide="thumbs-up" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Like Button — ConnectSocial App</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">ConnectSocial App · <span
+                  class="we">Exams: 7, 8</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag"
+                style="background:rgba(168,85,247,.15);color:#a855f7">useState</span><span class="tag"
+                style="background:rgba(34,211,238,.12);color:#22d3ee">Bootstrap</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build an interactive like button for "ConnectSocial App" using React useState with real-time
+              counter.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li><b>State:</b> useState for likes count (init: 0)</li>
+              <li><b>handleLike:</b> Increments count on click</li>
+              <li><b>UI:</b> Bootstrap button + likes display</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>LikeButton.jsx</div>
+              <div class="fp">📄 src/LikeButton.jsx</div><textarea id="c-like" class="raw-code" style="display:none">import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+function LikeButton() {
+  const [likes, setLikes] = useState(0);
+
+  function handleLike() {
+    setLikes(likes + 1);
+  }
+
+  return (
+    <div className="container text-center mt-5">
+      <div className="card shadow-sm p-4 mx-auto" style={{ maxWidth: "400px" }}>
+        <h4 className="mb-3">ConnectSocial Post</h4>
+        <p className="text-muted">Check out this amazing content!</p>
+        <button className="btn btn-primary btn-lg mt-3" onClick={handleLike}>
+          👍 Like
+        </button>
+        <p className="mt-3 fs-5 fw-bold">{likes} Likes</p>
+      </div>
+    </div>
+  );
+}
+
+export default LikeButton;</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head">
+                  <span class="cb-lang">jsx</span>
+                  <button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-jsx">import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+function LikeButton() {
+  const [likes, setLikes] = useState(0);
+
+  function handleLike() {
+    setLikes(likes + 1);
+  }
+
+  return (
+    &lt;div className="container text-center mt-5"&gt;
+      &lt;div className="card shadow-sm p-4 mx-auto" style={{ maxWidth: "400px" }}&gt;
+        &lt;h4 className="mb-3"&gt;ConnectSocial Post&lt;/h4&gt;
+        &lt;p className="text-muted"&gt;Check out this amazing content!&lt;/p&gt;
+        &lt;button className="btn btn-primary btn-lg mt-3" onClick={handleLike}&gt;
+          👍 Like
+        &lt;/button&gt;
+        &lt;p className="mt-3 fs-5 fw-bold"&gt;{likes} Likes&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default LikeButton;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-jsx dl"
+              onclick="dlCode('c-like','LikeButton.jsx')">⬇ LikeButton.jsx</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="1">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(168,85,247,.15); padding: 6px 8px; border-radius: 8px; display:inline-flex; align-items:center;"><i
+                data-lucide="contrast" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Theme Switcher — TechInnovate Solutions</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">TechInnovate Solutions · <span
+                  class="we">Exams: 9, 10</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag"
+                style="background:rgba(168,85,247,.15);color:#a855f7">useState</span><span class="tag"
+                style="background:rgba(168,85,247,.15);color:#a855f7">Dark/Light</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a dark/light theme switcher for "TechInnovate Solutions" using React useState.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li><b>State:</b> isDarkMode boolean (init: false)</li>
+              <li><b>Toggle:</b> Switch background/text colors dynamically</li>
+              <li><b>Button:</b> Dynamic label showing current mode</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>ThemeSwitcher.jsx</div>
+              <div class="fp">📄 src/ThemeSwitcher.jsx</div><textarea id="c-theme" class="raw-code"
+                style="display:none">import { useState } from "react";
+
+function ThemeSwitcher() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const containerStyle = {
+    backgroundColor: isDarkMode ? "#1a1a2e" : "#f8f9fa",
+    color:           isDarkMode ? "#e2e8f0" : "#1a1a2e",
+    minHeight:       "100vh",
+    display:         "flex",
+    flexDirection:   "column",
+    alignItems:      "center",
+    justifyContent:  "center",
+    transition:      "all 0.3s ease",
+    fontFamily:      "sans-serif",
+  };
+
+  const buttonStyle = {
+    padding:      "10px 28px",
+    fontSize:     "1rem",
+    background:   isDarkMode ? "#a855f7" : "#6366f1",
+    color:        "white",
+    border:       "none",
+    borderRadius: "8px",
+    cursor:       "pointer",
+    marginTop:    "16px",
+    transition:   "background 0.3s",
+  };
+
+  return (
+    <div style={containerStyle}>
+      <h1>TechInnovate Solutions</h1>
+      <p>Mode: {isDarkMode ? "🌙 Dark" : "☀️ Light"}</p>
+      <button style={buttonStyle} onClick={() => setIsDarkMode(!isDarkMode)}>
+        {isDarkMode ? "Switch to Light ☀️" : "Switch to Dark 🌙"}
+      </button>
+    </div>
+  );
+}
+
+export default ThemeSwitcher;</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head">
+                  <span class="cb-lang">jsx</span>
+                  <button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-jsx">import { useState } from "react";
+
+function ThemeSwitcher() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const containerStyle = {
+    backgroundColor: isDarkMode ? "#1a1a2e" : "#f8f9fa",
+    color:           isDarkMode ? "#e2e8f0" : "#1a1a2e",
+    minHeight:       "100vh",
+    display:         "flex",
+    flexDirection:   "column",
+    alignItems:      "center",
+    justifyContent:  "center",
+    transition:      "all 0.3s ease",
+    fontFamily:      "sans-serif",
+  };
+
+  const buttonStyle = {
+    padding:      "10px 28px",
+    fontSize:     "1rem",
+    background:   isDarkMode ? "#a855f7" : "#6366f1",
+    color:        "white",
+    border:       "none",
+    borderRadius: "8px",
+    cursor:       "pointer",
+    marginTop:    "16px",
+    transition:   "background 0.3s",
+  };
+
+  return (
+    &lt;div style={containerStyle}&gt;
+      &lt;h1&gt;TechInnovate Solutions&lt;/h1&gt;
+      &lt;p&gt;Mode: {isDarkMode ? "🌙 Dark" : "☀️ Light"}&lt;/p&gt;
+      &lt;button style={buttonStyle} onClick={() =&gt; setIsDarkMode(!isDarkMode)}&gt;
+        {isDarkMode ? "Switch to Light ☀️" : "Switch to Dark 🌙"}
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default ThemeSwitcher;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-jsx dl"
+              onclick="dlCode('c-theme','ThemeSwitcher.jsx')">⬇ ThemeSwitcher.jsx</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="unit-section" data-unit="2" id="unit18">
+      <div class="unit-header" style="--unit-color: var(--unit18)">
+        <div class="unit-num">2</div>
+        <div>
+          <div class="unit-title">Unit 2 &ndash; Node.js</div>
+          <div class="unit-subtitle">Express · MySQL · CRUD API · Routes</div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="2">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(34,211,238,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="package" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Product Management API — Global Retail Solutions</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">Global Retail Solutions · <span
+                  class="we">Exams: 2, 3, 5, 6</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag"
+                style="background:rgba(34,211,238,.12);color:#22d3ee">Express</span><span class="tag"
+                style="background:rgba(34,211,238,.12);color:#22d3ee">MySQL</span><span class="tag"
+                style="background:rgba(34,211,238,.12);color:#22d3ee">Full CRUD</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a product management REST API for "Global Retail Solutions" using Node.js, Express, and
+              MySQL with full CRUD operations.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li><b>DB:</b> we_db · products (id, name, price, quantity)</li>
+              <li><b>POST /products:</b> Create product</li>
+              <li><b>GET /products:</b> Read all</li>
+              <li><b>GET /products/:id:</b> Read one</li>
+              <li><b>PUT /products/:id:</b> Update</li>
+              <li><b>DELETE /products/:id:</b> Delete</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>Setup</div>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">bash</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-bash">npm init -y
+npm install express mysql2
+npm install --save-dev nodemon</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>Database</div><textarea id="c-prod-sql" class="raw-code"
+                style="display:none">CREATE DATABASE we_db;
+USE we_db;
+CREATE TABLE products (
+  id       INT AUTO_INCREMENT PRIMARY KEY,
+  name     VARCHAR(100)   NOT NULL,
+  price    DECIMAL(10,2)  NOT NULL,
+  quantity INT            NOT NULL
+);</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">sql</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-sql">CREATE DATABASE we_db;
+USE we_db;
+CREATE TABLE products (
+  id       INT AUTO_INCREMENT PRIMARY KEY,
+  name     VARCHAR(100)   NOT NULL,
+  price    DECIMAL(10,2)  NOT NULL,
+  quantity INT            NOT NULL
+);</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">3</span>app.js — Full CRUD API</div>
+              <div class="fp">📄 app.js</div><textarea id="c-prod-api" class="raw-code" style="display:none">const express = require("express");
+const mysql   = require("mysql2");
+const app     = express();
+app.use(express.json());
+
+const db = mysql.createConnection({
+  host: "localhost", user: "root", password: "", database: "we_db"
+});
+db.connect(err => {
+  if (err) console.error("DB Error:", err);
+  else console.log("Connected to MySQL");
+});
+
+// CREATE
+app.post("/products", (req, res) => {
+  const { name, price, quantity } = req.body;
+  db.query("INSERT INTO products (name,price,quantity) VALUES (?,?,?)",
+    [name, price, quantity], (err, r) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.status(201).json({ message: "Product created", id: r.insertId });
+  });
+});
+
+// READ ALL
+app.get("/products", (req, res) => {
+  db.query("SELECT * FROM products", (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(results);
+  });
+});
+
+// READ ONE
+app.get("/products/:id", (req, res) => {
+  db.query("SELECT * FROM products WHERE id=?", [req.params.id], (err, result) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (!result.length) return res.status(404).json({ message: "Not found" });
+    res.json(result[0]);
+  });
+});
+
+// UPDATE
+app.put("/products/:id", (req, res) => {
+  const { name, price, quantity } = req.body;
+  db.query("UPDATE products SET name=?,price=?,quantity=? WHERE id=?",
+    [name, price, quantity, req.params.id], err => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ message: "Product updated" });
+  });
+});
+
+// DELETE
+app.delete("/products/:id", (req, res) => {
+  db.query("DELETE FROM products WHERE id=?", [req.params.id], err => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ message: "Product deleted" });
+  });
+});
+
+app.listen(3000, () => console.log("Server on http://localhost:3000"));</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">js</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-js">const express = require("express");
+const mysql   = require("mysql2");
+const app     = express();
+app.use(express.json());
+
+const db = mysql.createConnection({
+  host: "localhost", user: "root", password: "", database: "we_db"
+});
+db.connect(err =&gt; {
+  if (err) console.error("DB Error:", err);
+  else console.log("Connected to MySQL");
+});
+
+// CREATE
+app.post("/products", (req, res) =&gt; {
+  const { name, price, quantity } = req.body;
+  db.query("INSERT INTO products (name,price,quantity) VALUES (?,?,?)",
+    [name, price, quantity], (err, r) =&gt; {
+    if (err) return res.status(500).json({ error: err.message });
+    res.status(201).json({ message: "Product created", id: r.insertId });
+  });
+});
+
+// READ ALL
+app.get("/products", (req, res) =&gt; {
+  db.query("SELECT * FROM products", (err, results) =&gt; {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(results);
+  });
+});
+
+// READ ONE
+app.get("/products/:id", (req, res) =&gt; {
+  db.query("SELECT * FROM products WHERE id=?", [req.params.id], (err, result) =&gt; {
+    if (err) return res.status(500).json({ error: err.message });
+    if (!result.length) return res.status(404).json({ message: "Not found" });
+    res.json(result[0]);
+  });
+});
+
+// UPDATE
+app.put("/products/:id", (req, res) =&gt; {
+  const { name, price, quantity } = req.body;
+  db.query("UPDATE products SET name=?,price=?,quantity=? WHERE id=?",
+    [name, price, quantity, req.params.id], err =&gt; {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ message: "Product updated" });
+  });
+});
+
+// DELETE
+app.delete("/products/:id", (req, res) =&gt; {
+  db.query("DELETE FROM products WHERE id=?", [req.params.id], err =&gt; {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ message: "Product deleted" });
+  });
+});
+
+app.listen(3000, () =&gt; console.log("Server on http://localhost:3000"));</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">4</span>Test with Postman</div>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">json</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-json">// POST http://localhost:3000/products
+{ "name": "Laptop", "price": 15000, "quantity": 10 }
+
+// GET  http://localhost:3000/products
+// GET  http://localhost:3000/products/1
+// PUT  http://localhost:3000/products/1 — { "name": "Gaming Laptop", "price": 18000, "quantity": 5 }
+// DELETE http://localhost:3000/products/1</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-js dl"
+              onclick="dlCode('c-prod-api','app.js')">⬇ app.js</button><button class="dl-sql dl"
+              onclick="dlCode('c-prod-sql','database.sql')">⬇ database.sql</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="2">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(34,211,238,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="globe" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Corporate Website — Innovate Web Solutions</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">Innovate Web Solutions · <span
+                  class="we">Exams: 8, 9, 12</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag"
+                style="background:rgba(34,211,238,.12);color:#22d3ee">Express</span><span class="tag"
+                style="background:rgba(34,211,238,.12);color:#22d3ee">4 Routes</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a corporate website for "Innovate Web Solutions" using Express.js with 4 routes: Home,
+              About, Products, Contact.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li>GET / — Home</li>
+              <li>GET /about — About</li>
+              <li>GET /products — Products</li>
+              <li>GET /contact — Contact</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>Setup</div>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">bash</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-bash">npm init -y &amp;&amp; npm install express</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>index.js — All Routes</div>
+              <div class="fp">📄 index.js</div><textarea id="c-corp" class="raw-code" style="display:none">const express = require("express");
+const app     = express();
+
+const nav = `
+  <nav style="background:#1e293b;padding:14px;margin-bottom:20px">
+    <a href="/"         style="color:white;margin-right:20px">Home</a>
+    <a href="/about"    style="color:white;margin-right:20px">About</a>
+    <a href="/products" style="color:white;margin-right:20px">Products</a>
+    <a href="/contact"  style="color:white">Contact</a>
+  </nav>`;
+
+app.get("/", (req, res) => res.send(nav + `
+  <div style="padding:20px">
+    <h1>Welcome to Innovate Web Solutions</h1>
+    <p>Your partner in digital innovation since 2015.</p>
+  </div>`));
+
+app.get("/about", (req, res) => res.send(nav + `
+  <div style="padding:20px">
+    <h1>About Us</h1>
+    <p>We are passionate developers creating modern web solutions.</p>
+  </div>`));
+
+app.get("/products", (req, res) => res.send(nav + `
+  <div style="padding:20px">
+    <h1>Our Products</h1>
+    <ul>
+      <li>Website Development</li>
+      <li>Mobile Applications</li>
+      <li>E-commerce Solutions</li>
+      <li>Cloud Services</li>
+    </ul>
+  </div>`));
+
+app.get("/contact", (req, res) => res.send(nav + `
+  <div style="padding:20px">
+    <h1>Contact Us</h1>
+    <p>Email: info@innovate.com</p>
+    <p>Phone: +20 100 000 0000</p>
+    <p>Address: Cairo, Egypt</p>
+  </div>`));
+
+app.listen(3000, () => console.log("Server on http://localhost:3000"));</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">js</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-js">const express = require("express");
+const app     = express();
+
+const nav = `
+  &lt;nav style="background:#1e293b;padding:14px;margin-bottom:20px"&gt;
+    &lt;a href="/"         style="color:white;margin-right:20px"&gt;Home&lt;/a&gt;
+    &lt;a href="/about"    style="color:white;margin-right:20px"&gt;About&lt;/a&gt;
+    &lt;a href="/products" style="color:white;margin-right:20px"&gt;Products&lt;/a&gt;
+    &lt;a href="/contact"  style="color:white"&gt;Contact&lt;/a&gt;
+  &lt;/nav&gt;`;
+
+app.get("/", (req, res) =&gt; res.send(nav + `
+  &lt;div style="padding:20px"&gt;
+    &lt;h1&gt;Welcome to Innovate Web Solutions&lt;/h1&gt;
+    &lt;p&gt;Your partner in digital innovation since 2015.&lt;/p&gt;
+  &lt;/div&gt;`));
+
+app.get("/about", (req, res) =&gt; res.send(nav + `
+  &lt;div style="padding:20px"&gt;
+    &lt;h1&gt;About Us&lt;/h1&gt;
+    &lt;p&gt;We are passionate developers creating modern web solutions.&lt;/p&gt;
+  &lt;/div&gt;`));
+
+app.get("/products", (req, res) =&gt; res.send(nav + `
+  &lt;div style="padding:20px"&gt;
+    &lt;h1&gt;Our Products&lt;/h1&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Website Development&lt;/li&gt;
+      &lt;li&gt;Mobile Applications&lt;/li&gt;
+      &lt;li&gt;E-commerce Solutions&lt;/li&gt;
+      &lt;li&gt;Cloud Services&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;`));
+
+app.get("/contact", (req, res) =&gt; res.send(nav + `
+  &lt;div style="padding:20px"&gt;
+    &lt;h1&gt;Contact Us&lt;/h1&gt;
+    &lt;p&gt;Email: info@innovate.com&lt;/p&gt;
+    &lt;p&gt;Phone: +20 100 000 0000&lt;/p&gt;
+    &lt;p&gt;Address: Cairo, Egypt&lt;/p&gt;
+  &lt;/div&gt;`));
+
+app.listen(3000, () =&gt; console.log("Server on http://localhost:3000"));</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-js dl"
+              onclick="dlCode('c-corp','index.js')">⬇ index.js</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="unit-section" data-unit="3" id="unit19">
+      <div class="unit-header" style="--unit-color: var(--unit19)">
+        <div class="unit-num">3</div>
+        <div>
+          <div class="unit-title">Unit 3 &ndash; PHP</div>
+          <div class="unit-subtitle">Includes · Cookies · Bootstrap · Modular Pages</div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="3">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(248,113,113,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="graduation-cap" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">3-Page Website — Cambridge International College</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">Cambridge International College
+                · <span class="we">Exams: 2, 6</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(248,113,113,.12);color:#f87171">PHP
+                Includes</span><span class="tag" style="background:rgba(248,113,113,.12);color:#f87171">Bootstrap</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Create a 3-page website for "Cambridge International College" using PHP includes for
+              consistent header, navigation, and footer.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">📁 Structure</div>
+            <div class="cb-wrap">
+              <div class="cb-head"><span class="cb-lang">text</span><button class="cb" onclick="cp(this)">Copy</button>
+              </div>
+              <pre><code class="language-text">/cambridge/
+├── index.php
+├── courses.php
+├── contact.php
+└── includes/
+    ├── header.php
+    ├── navigation.php
+    └── footer.php</code></pre>
+            </div>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>header.php</div>
+              <div class="fp">📄 includes/header.php</div><textarea id="c-camb-hdr" class="raw-code"
+                style="display:none"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cambridge International College</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Cambridge International College&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>navigation.php</div>
+              <div class="fp">📄 includes/navigation.php</div><textarea id="c-camb-nav" class="raw-code"
+                style="display:none"><nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.php">🎓 Cambridge College</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="courses.php">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;nav class="navbar navbar-expand-lg navbar-dark bg-dark"&gt;
+  &lt;div class="container"&gt;
+    &lt;a class="navbar-brand fw-bold" href="index.php"&gt;🎓 Cambridge College&lt;/a&gt;
+    &lt;div class="collapse navbar-collapse"&gt;
+      &lt;ul class="navbar-nav ms-auto"&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="index.php"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="courses.php"&gt;Courses&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="contact.php"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">3</span>footer.php</div>
+              <div class="fp">📄 includes/footer.php</div><textarea id="c-camb-ftr" class="raw-code"
+                style="display:none"><footer class="bg-dark text-white text-center py-3 mt-5">
+  <p class="mb-0">&copy; <?php echo date("Y"); ?> Cambridge International College</p>
+</footer>
+</body>
+</html></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;footer class="bg-dark text-white text-center py-3 mt-5"&gt;
+  &lt;p class="mb-0"&gt;&amp;copy; &lt;?php echo date("Y"); ?&gt; Cambridge International College&lt;/p&gt;
+&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">4</span>index.php</div>
+              <div class="fp">📄 index.php</div><textarea id="c-camb-idx" class="raw-code" style="display:none"><?php include("includes/header.php"); ?>
+<?php include("includes/navigation.php"); ?>
+
+<div class="container mt-5">
+  <div class="p-5 bg-light rounded-3">
+    <h1 class="display-4">Welcome to Cambridge International College</h1>
+    <p class="lead">We provide world-class education with modern teaching methods.</p>
+    <a href="courses.php" class="btn btn-primary btn-lg">Explore Courses</a>
+  </div>
+</div>
+
+<?php include("includes/footer.php"); ?></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;?php include("includes/header.php"); ?&gt;
+&lt;?php include("includes/navigation.php"); ?&gt;
+
+&lt;div class="container mt-5"&gt;
+  &lt;div class="p-5 bg-light rounded-3"&gt;
+    &lt;h1 class="display-4"&gt;Welcome to Cambridge International College&lt;/h1&gt;
+    &lt;p class="lead"&gt;We provide world-class education with modern teaching methods.&lt;/p&gt;
+    &lt;a href="courses.php" class="btn btn-primary btn-lg"&gt;Explore Courses&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;?php include("includes/footer.php"); ?&gt;</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">5</span>courses.php</div>
+              <div class="fp">📄 courses.php</div><textarea id="c-camb-crs" class="raw-code" style="display:none"><?php include("includes/header.php"); ?>
+<?php include("includes/navigation.php"); ?>
+
+<div class="container mt-5">
+  <h2 class="mb-4">Our Courses</h2>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5>💻 Web Development</h5>
+          <p>HTML, CSS, JavaScript, PHP and MySQL.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5>🤖 Data Science</h5>
+          <p>Python, AI, Machine Learning and Data Analysis.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5>🌐 Networking</h5>
+          <p>CCNA, Network Security and Infrastructure.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php include("includes/footer.php"); ?></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;?php include("includes/header.php"); ?&gt;
+&lt;?php include("includes/navigation.php"); ?&gt;
+
+&lt;div class="container mt-5"&gt;
+  &lt;h2 class="mb-4"&gt;Our Courses&lt;/h2&gt;
+  &lt;div class="row g-4"&gt;
+    &lt;div class="col-md-4"&gt;
+      &lt;div class="card h-100 shadow-sm"&gt;
+        &lt;div class="card-body"&gt;
+          &lt;h5&gt;💻 Web Development&lt;/h5&gt;
+          &lt;p&gt;HTML, CSS, JavaScript, PHP and MySQL.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-md-4"&gt;
+      &lt;div class="card h-100 shadow-sm"&gt;
+        &lt;div class="card-body"&gt;
+          &lt;h5&gt;🤖 Data Science&lt;/h5&gt;
+          &lt;p&gt;Python, AI, Machine Learning and Data Analysis.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-md-4"&gt;
+      &lt;div class="card h-100 shadow-sm"&gt;
+        &lt;div class="card-body"&gt;
+          &lt;h5&gt;🌐 Networking&lt;/h5&gt;
+          &lt;p&gt;CCNA, Network Security and Infrastructure.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;?php include("includes/footer.php"); ?&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-php dl"
+              onclick="dlCode('c-camb-hdr','header.php')">⬇ header.php</button><button class="dl-php dl"
+              onclick="dlCode('c-camb-nav','navigation.php')">⬇ navigation.php</button><button class="dl-php dl"
+              onclick="dlCode('c-camb-ftr','footer.php')">⬇ footer.php</button><button class="dl-php dl"
+              onclick="dlCode('c-camb-idx','index.php')">⬇ index.php</button><button class="dl-php dl"
+              onclick="dlCode('c-camb-crs','courses.php')">⬇ courses.php</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="3">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(248,113,113,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="map" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Language Preference — GlobalConnect Inc.</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">GlobalConnect Inc. · <span
+                  class="we">Exams: 2, 10</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(248,113,113,.12);color:#f87171">PHP
+                Cookies</span><span class="tag" style="background:rgba(248,113,113,.12);color:#f87171">365 days</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a language preference system for "GlobalConnect Inc." storing user's language choice in
+              a PHP cookie for 365 days.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li><b>Cookie:</b> user_language · expires 365 days</li>
+              <li><b>Options:</b> Arabic, English, French</li>
+              <li><b>Default:</b> english if no cookie set</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>language.php</div>
+              <div class="fp">📄 language.php</div><textarea id="c-lang" class="raw-code" style="display:none"><?php
+// Save language when form submitted
+if (isset($_POST["language"])) {
+    $language = $_POST["language"];
+    setcookie("user_language", $language, time() + (86400 * 365), "/");
+    $msg = "Language saved: " . htmlspecialchars($language);
+}
+
+// Read language (default: english)
+$lang = isset($_COOKIE["user_language"]) ? $_COOKIE["user_language"] : "english";
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GlobalConnect - Language</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div class="container mt-5" style="max-width:500px">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h4>🌍 Language Settings</h4>
+    </div>
+    <div class="card-body">
+      <?php if (isset($msg)): ?>
+        <div class="alert alert-success"><?php echo $msg; ?></div>
+      <?php endif; ?>
+      <p>Current: <strong class="text-primary"><?php echo htmlspecialchars($lang); ?></strong></p>
+      <form method="POST">
+        <div class="mb-3">
+          <label class="form-label fw-bold">Choose Language:</label>
+          <select name="language" class="form-select">
+            <option value="arabic"  <?php echo ($lang==="arabic")  ? "selected":""; ?>>🇸🇦 Arabic</option>
+            <option value="english" <?php echo ($lang==="english") ? "selected":""; ?>>🇬🇧 English</option>
+            <option value="french"  <?php echo ($lang==="french")  ? "selected":""; ?>>🇫🇷 French</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Save Preference</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;?php
+// Save language when form submitted
+if (isset($_POST["language"])) {
+    $language = $_POST["language"];
+    setcookie("user_language", $language, time() + (86400 * 365), "/");
+    $msg = "Language saved: " . htmlspecialchars($language);
+}
+
+// Read language (default: english)
+$lang = isset($_COOKIE["user_language"]) ? $_COOKIE["user_language"] : "english";
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;GlobalConnect - Language&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body class="bg-light"&gt;
+&lt;div class="container mt-5" style="max-width:500px"&gt;
+  &lt;div class="card shadow"&gt;
+    &lt;div class="card-header bg-primary text-white"&gt;
+      &lt;h4&gt;🌍 Language Settings&lt;/h4&gt;
+    &lt;/div&gt;
+    &lt;div class="card-body"&gt;
+      &lt;?php if (isset($msg)): ?&gt;
+        &lt;div class="alert alert-success"&gt;&lt;?php echo $msg; ?&gt;&lt;/div&gt;
+      &lt;?php endif; ?&gt;
+      &lt;p&gt;Current: &lt;strong class="text-primary"&gt;&lt;?php echo htmlspecialchars($lang); ?&gt;&lt;/strong&gt;&lt;/p&gt;
+      &lt;form method="POST"&gt;
+        &lt;div class="mb-3"&gt;
+          &lt;label class="form-label fw-bold"&gt;Choose Language:&lt;/label&gt;
+          &lt;select name="language" class="form-select"&gt;
+            &lt;option value="arabic"  &lt;?php echo ($lang==="arabic")  ? "selected":""; ?&gt;&gt;🇸🇦 Arabic&lt;/option&gt;
+            &lt;option value="english" &lt;?php echo ($lang==="english") ? "selected":""; ?&gt;&gt;🇬🇧 English&lt;/option&gt;
+            &lt;option value="french"  &lt;?php echo ($lang==="french")  ? "selected":""; ?&gt;&gt;🇫🇷 French&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/div&gt;
+        &lt;button type="submit" class="btn btn-primary w-100"&gt;Save Preference&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-php dl"
+              onclick="dlCode('c-lang','language.php')">⬇ language.php</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="3">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(248,113,113,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="eye" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Visitor Tracking — Digital Insights Agency</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">Digital Insights Agency · <span
+                  class="we">Exams: 3, 12</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(248,113,113,.12);color:#f87171">PHP
+                Cookies</span><span class="tag" style="background:rgba(248,113,113,.12);color:#f87171">30 days</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a visitor tracking system for "Digital Insights Agency" using PHP cookies to count user
+              visits with 30-day expiry.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li>Check visit_count cookie → increment or initialize to 1</li>
+              <li>Cookie expiry: 30 days</li>
+              <li>Display count prominently</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>visit_counter.php</div>
+              <div class="fp">📄 visit_counter.php</div><textarea id="c-visit" class="raw-code" style="display:none"><?php
+// Increment or initialize visit count
+if (isset($_COOKIE["visit_count"])) {
+    $visit_count = (int)$_COOKIE["visit_count"] + 1;
+} else {
+    $visit_count = 1;
+}
+
+// Set cookie — 30 days
+setcookie("visit_count", $visit_count, time() + (86400 * 30), "/");
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Digital Insights - Visitor Tracker</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body class="bg-dark text-white">
+<div class="container text-center mt-5">
+  <h2>📊 Digital Insights Agency</h2>
+  <div class="card bg-secondary text-white mt-4 mx-auto" style="max-width:360px">
+    <div class="card-body py-4">
+      <h5 class="card-title">Your Visit Count</h5>
+      <div class="display-1 fw-bold text-warning">
+        <?php echo $visit_count; ?>
+      </div>
+      <p class="mt-2">
+        <?php echo ($visit_count === 1) ? "Welcome, first-time visitor! 👋" : "Welcome back! 🎉"; ?>
+      </p>
+    </div>
+  </div>
+</div>
+</body>
+</html></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;?php
+// Increment or initialize visit count
+if (isset($_COOKIE["visit_count"])) {
+    $visit_count = (int)$_COOKIE["visit_count"] + 1;
+} else {
+    $visit_count = 1;
+}
+
+// Set cookie — 30 days
+setcookie("visit_count", $visit_count, time() + (86400 * 30), "/");
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Digital Insights - Visitor Tracker&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body class="bg-dark text-white"&gt;
+&lt;div class="container text-center mt-5"&gt;
+  &lt;h2&gt;📊 Digital Insights Agency&lt;/h2&gt;
+  &lt;div class="card bg-secondary text-white mt-4 mx-auto" style="max-width:360px"&gt;
+    &lt;div class="card-body py-4"&gt;
+      &lt;h5 class="card-title"&gt;Your Visit Count&lt;/h5&gt;
+      &lt;div class="display-1 fw-bold text-warning"&gt;
+        &lt;?php echo $visit_count; ?&gt;
+      &lt;/div&gt;
+      &lt;p class="mt-2"&gt;
+        &lt;?php echo ($visit_count === 1) ? "Welcome, first-time visitor! 👋" : "Welcome back! 🎉"; ?&gt;
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-php dl"
+              onclick="dlCode('c-visit','visit_counter.php')">⬇ visit_counter.php</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="3">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(248,113,113,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="pizza" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Restaurant Website — La Bella Trattoria</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">La Bella Trattoria · <span
+                  class="we">Exams: 3, 7</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(248,113,113,.12);color:#f87171">PHP
+                Includes</span><span class="tag" style="background:rgba(248,113,113,.12);color:#f87171">Bootstrap</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a restaurant website for "La Bella Trattoria" with Home, Menu, and Location pages using
+              PHP modular includes.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>navbar.php</div>
+              <div class="fp">📄 includes/navbar.php</div><textarea id="c-trat-nav" class="raw-code"
+                style="display:none"><nav class="navbar navbar-dark bg-danger">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.php">🍕 La Bella Trattoria</a>
+    <div class="navbar-nav flex-row gap-3">
+      <a class="nav-link text-white" href="index.php">Home</a>
+      <a class="nav-link text-white" href="menu.php">Menu</a>
+      <a class="nav-link text-white" href="location.php">Location</a>
+    </div>
+  </div>
+</nav></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;nav class="navbar navbar-dark bg-danger"&gt;
+  &lt;div class="container"&gt;
+    &lt;a class="navbar-brand fw-bold" href="index.php"&gt;🍕 La Bella Trattoria&lt;/a&gt;
+    &lt;div class="navbar-nav flex-row gap-3"&gt;
+      &lt;a class="nav-link text-white" href="index.php"&gt;Home&lt;/a&gt;
+      &lt;a class="nav-link text-white" href="menu.php"&gt;Menu&lt;/a&gt;
+      &lt;a class="nav-link text-white" href="location.php"&gt;Location&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>index.php</div>
+              <div class="fp">📄 index.php</div><textarea id="c-trat-idx" class="raw-code" style="display:none"><?php include("includes/head.php"); ?>
+<?php include("includes/navbar.php"); ?>
+
+<div class="container mt-5">
+  <div class="text-center mb-4">
+    <h1 class="display-4">🍕 La Bella Trattoria</h1>
+    <p class="lead text-muted">Authentic Italian cuisine in the heart of the city</p>
+  </div>
+  <h3>Featured Dishes</h3>
+  <div class="row g-3 mt-2">
+    <div class="col-md-4">
+      <div class="card"><div class="card-body">
+        <h5>🍕 Margherita Pizza</h5><p>Classic tomato & mozzarella — 80 EGP</p>
+      </div></div>
+    </div>
+    <div class="col-md-4">
+      <div class="card"><div class="card-body">
+        <h5>🍝 Spaghetti Carbonara</h5><p>Creamy pasta with pancetta — 90 EGP</p>
+      </div></div>
+    </div>
+    <div class="col-md-4">
+      <div class="card"><div class="card-body">
+        <h5>🍰 Tiramisu</h5><p>Classic Italian dessert — 50 EGP</p>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<?php include("includes/footer.php"); ?></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;?php include("includes/head.php"); ?&gt;
+&lt;?php include("includes/navbar.php"); ?&gt;
+
+&lt;div class="container mt-5"&gt;
+  &lt;div class="text-center mb-4"&gt;
+    &lt;h1 class="display-4"&gt;🍕 La Bella Trattoria&lt;/h1&gt;
+    &lt;p class="lead text-muted"&gt;Authentic Italian cuisine in the heart of the city&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;h3&gt;Featured Dishes&lt;/h3&gt;
+  &lt;div class="row g-3 mt-2"&gt;
+    &lt;div class="col-md-4"&gt;
+      &lt;div class="card"&gt;&lt;div class="card-body"&gt;
+        &lt;h5&gt;🍕 Margherita Pizza&lt;/h5&gt;&lt;p&gt;Classic tomato &amp; mozzarella — 80 EGP&lt;/p&gt;
+      &lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-md-4"&gt;
+      &lt;div class="card"&gt;&lt;div class="card-body"&gt;
+        &lt;h5&gt;🍝 Spaghetti Carbonara&lt;/h5&gt;&lt;p&gt;Creamy pasta with pancetta — 90 EGP&lt;/p&gt;
+      &lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-md-4"&gt;
+      &lt;div class="card"&gt;&lt;div class="card-body"&gt;
+        &lt;h5&gt;🍰 Tiramisu&lt;/h5&gt;&lt;p&gt;Classic Italian dessert — 50 EGP&lt;/p&gt;
+      &lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;?php include("includes/footer.php"); ?&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-php dl"
+              onclick="dlCode('c-trat-nav','navbar.php')">⬇ navbar.php</button><button class="dl-php dl"
+              onclick="dlCode('c-trat-idx','index.php')">⬇ index.php</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="unit-section" data-unit="4" id="unit20">
+      <div class="unit-header" style="--unit-color: var(--unit20)">
+        <div class="unit-num">4</div>
+        <div>
+          <div class="unit-title">Unit 4 &ndash; Adv PHP</div>
+          <div class="unit-subtitle">PDO · CRUD · Arrays · foreach · Calculator</div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="4">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(74,222,128,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="bar-chart-2" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Student Report Portal</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">School Project · <span
+                  class="we">Exams: 1, 5</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(74,222,128,.12);color:#4ade80">Multi-dim
+                Arrays</span><span class="tag" style="background:rgba(74,222,128,.12);color:#4ade80">foreach</span><span
+                class="tag" style="background:rgba(74,222,128,.12);color:#4ade80">Bootstrap Table</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a Student Report Portal using multi-dimensional PHP arrays and Bootstrap table with
+              foreach loop and Pass/Fail status.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li><b>Data:</b> Multi-dim array $students with 5 records</li>
+              <li><b>Loop:</b> foreach to iterate records</li>
+              <li><b>UI:</b> Bootstrap table with striped rows and dark header</li>
+              <li><b>Status:</b> Green badge Pass / Red badge Fail based on marks</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>students.php</div>
+              <div class="fp">📄 students.php</div><textarea id="c-stud" class="raw-code" style="display:none"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Report Portal</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Student Report Portal</h2>
+  <?php
+  $students = [
+    ["name"=>"Ahmed Ali",       "grade"=>"Grade 10","subject"=>"Math",      "marks"=>85],
+    ["name"=>"Sara Mohamed",    "grade"=>"Grade 10","subject"=>"Science",   "marks"=>90],
+    ["name"=>"Omar Hassan",     "grade"=>"Grade 11","subject"=>"English",   "marks"=>78],
+    ["name"=>"Mona Khaled",     "grade"=>"Grade 11","subject"=>"Physics",   "marks"=>88],
+    ["name"=>"Youssef Ibrahim", "grade"=>"Grade 12","subject"=>"Chemistry", "marks"=>92],
+  ];
+  ?>
+  <table class="table table-bordered table-striped table-hover text-center">
+    <thead class="table-dark">
+      <tr><th>#</th><th>Name</th><th>Grade</th><th>Subject</th><th>Marks</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+    <?php $i=1; foreach($students as $s):
+      $status = ($s["marks"]>=50)
+        ? "<span class='badge bg-success'>Pass</span>"
+        : "<span class='badge bg-danger'>Fail</span>";
+    ?>
+      <tr>
+        <td><?php echo $i++; ?></td>
+        <td><?php echo $s["name"];    ?></td>
+        <td><?php echo $s["grade"];   ?></td>
+        <td><?php echo $s["subject"]; ?></td>
+        <td><?php echo $s["marks"];   ?></td>
+        <td><?php echo $status;       ?></td>
+      </tr>
+    <?php endforeach; ?>
+    </tbody>
+  </table>
+</div>
+</body>
+</html></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Student Report Portal&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="container mt-5"&gt;
+  &lt;h2 class="text-center mb-4"&gt;Student Report Portal&lt;/h2&gt;
+  &lt;?php
+  $students = [
+    ["name"=&gt;"Ahmed Ali",       "grade"=&gt;"Grade 10","subject"=&gt;"Math",      "marks"=&gt;85],
+    ["name"=&gt;"Sara Mohamed",    "grade"=&gt;"Grade 10","subject"=&gt;"Science",   "marks"=&gt;90],
+    ["name"=&gt;"Omar Hassan",     "grade"=&gt;"Grade 11","subject"=&gt;"English",   "marks"=&gt;78],
+    ["name"=&gt;"Mona Khaled",     "grade"=&gt;"Grade 11","subject"=&gt;"Physics",   "marks"=&gt;88],
+    ["name"=&gt;"Youssef Ibrahim", "grade"=&gt;"Grade 12","subject"=&gt;"Chemistry", "marks"=&gt;92],
+  ];
+  ?&gt;
+  &lt;table class="table table-bordered table-striped table-hover text-center"&gt;
+    &lt;thead class="table-dark"&gt;
+      &lt;tr&gt;&lt;th&gt;#&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Grade&lt;/th&gt;&lt;th&gt;Subject&lt;/th&gt;&lt;th&gt;Marks&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+    &lt;?php $i=1; foreach($students as $s):
+      $status = ($s["marks"]&gt;=50)
+        ? "&lt;span class='badge bg-success'&gt;Pass&lt;/span&gt;"
+        : "&lt;span class='badge bg-danger'&gt;Fail&lt;/span&gt;";
+    ?&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;?php echo $i++; ?&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;?php echo $s["name"];    ?&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;?php echo $s["grade"];   ?&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;?php echo $s["subject"]; ?&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;?php echo $s["marks"];   ?&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;?php echo $status;       ?&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;?php endforeach; ?&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-php dl"
+              onclick="dlCode('c-stud','students.php')">⬇ students.php</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="4">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(74,222,128,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="building-2" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Student Records CRUD — City College</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">City College · <span
+                  class="we">Exams: 4, 9</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(74,222,128,.12);color:#4ade80">PDO</span><span
+                class="tag" style="background:rgba(74,222,128,.12);color:#4ade80">CRUD</span><span class="tag"
+                style="background:rgba(74,222,128,.12);color:#4ade80">Bootstrap</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a student records system for "City College" using PDO with Create, Read, and Delete
+              functionality.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li><b>DB:</b> college_records · students table</li>
+              <li><b>PDO:</b> Secure connection with error handling</li>
+              <li><b>Pages:</b> index.php · add.php · delete.php</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>database.sql</div><textarea id="c-col-sql" class="raw-code"
+                style="display:none">CREATE DATABASE college_records;
+USE college_records;
+CREATE TABLE students (
+  id     INT AUTO_INCREMENT PRIMARY KEY,
+  name   VARCHAR(100) NOT NULL,
+  email  VARCHAR(100) NOT NULL,
+  phone  VARCHAR(20),
+  course VARCHAR(100) NOT NULL
+);</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">sql</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-sql">CREATE DATABASE college_records;
+USE college_records;
+CREATE TABLE students (
+  id     INT AUTO_INCREMENT PRIMARY KEY,
+  name   VARCHAR(100) NOT NULL,
+  email  VARCHAR(100) NOT NULL,
+  phone  VARCHAR(20),
+  course VARCHAR(100) NOT NULL
+);</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>db.php — Connection</div>
+              <div class="fp">📄 db.php</div><textarea id="c-col-db" class="raw-code" style="display:none"><?php
+try {
+    $conn = new PDO(
+        "mysql:host=localhost;dbname=college_records;charset=utf8",
+        "root", ""
+    );
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
+?></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;?php
+try {
+    $conn = new PDO(
+        "mysql:host=localhost;dbname=college_records;charset=utf8",
+        "root", ""
+    );
+    $conn-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e-&gt;getMessage());
+}
+?&gt;</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">3</span>index.php — View Students</div>
+              <div class="fp">📄 index.php</div><textarea id="c-col-idx" class="raw-code" style="display:none"><?php include "db.php"; ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>City College</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+  <h2>City College — Student Records</h2>
+  <a href="add.php" class="btn btn-primary mb-3">+ Add Student</a>
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Course</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+    <?php
+    $stmt = $conn->query("SELECT * FROM students ORDER BY id DESC");
+    $i = 1;
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)):
+    ?>
+      <tr>
+        <td><?php echo $i++;                                    ?></td>
+        <td><?php echo htmlspecialchars($row["name"]);          ?></td>
+        <td><?php echo htmlspecialchars($row["email"]);         ?></td>
+        <td><?php echo htmlspecialchars($row["phone"]);         ?></td>
+        <td><?php echo htmlspecialchars($row["course"]);        ?></td>
+        <td>
+          <a href="delete.php?id=<?php echo $row['id']; ?>"
+             class="btn btn-danger btn-sm"
+             onclick="return confirm('Delete this student?')">Delete</a>
+        </td>
+      </tr>
+    <?php endwhile; ?>
+    </tbody>
+  </table>
+</div>
+</body>
+</html></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;?php include "db.php"; ?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;City College&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="container mt-4"&gt;
+  &lt;h2&gt;City College — Student Records&lt;/h2&gt;
+  &lt;a href="add.php" class="btn btn-primary mb-3"&gt;+ Add Student&lt;/a&gt;
+  &lt;table class="table table-bordered table-hover"&gt;
+    &lt;thead class="table-dark"&gt;
+      &lt;tr&gt;&lt;th&gt;#&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Email&lt;/th&gt;&lt;th&gt;Phone&lt;/th&gt;&lt;th&gt;Course&lt;/th&gt;&lt;th&gt;Action&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+    &lt;?php
+    $stmt = $conn-&gt;query("SELECT * FROM students ORDER BY id DESC");
+    $i = 1;
+    while ($row = $stmt-&gt;fetch(PDO::FETCH_ASSOC)):
+    ?&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;?php echo $i++;                                    ?&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;?php echo htmlspecialchars($row["name"]);          ?&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;?php echo htmlspecialchars($row["email"]);         ?&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;?php echo htmlspecialchars($row["phone"]);         ?&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;?php echo htmlspecialchars($row["course"]);        ?&gt;&lt;/td&gt;
+        &lt;td&gt;
+          &lt;a href="delete.php?id=&lt;?php echo $row['id']; ?&gt;"
+             class="btn btn-danger btn-sm"
+             onclick="return confirm('Delete this student?')"&gt;Delete&lt;/a&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;?php endwhile; ?&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">4</span>add.php — Create</div>
+              <div class="fp">📄 add.php</div><textarea id="c-col-add" class="raw-code" style="display:none"><?php
+include "db.php";
+if (isset($_POST["submit"])) {
+    $sql  = "INSERT INTO students (name, email, phone, course) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$_POST["name"], $_POST["email"], $_POST["phone"], $_POST["course"]]);
+    header("Location: index.php");
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Student</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4" style="max-width:500px">
+  <h3>Add New Student</h3>
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">Full Name</label>
+      <input type="text" name="name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" name="email" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Phone</label>
+      <input type="text" name="phone" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Course</label>
+      <input type="text" name="course" class="form-control" required>
+    </div>
+    <div class="d-flex gap-2">
+      <button type="submit" name="submit" class="btn btn-success">Add Student</button>
+      <a href="index.php" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>
+</body>
+</html></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;?php
+include "db.php";
+if (isset($_POST["submit"])) {
+    $sql  = "INSERT INTO students (name, email, phone, course) VALUES (?, ?, ?, ?)";
+    $stmt = $conn-&gt;prepare($sql);
+    $stmt-&gt;execute([$_POST["name"], $_POST["email"], $_POST["phone"], $_POST["course"]]);
+    header("Location: index.php");
+    exit;
+}
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Add Student&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="container mt-4" style="max-width:500px"&gt;
+  &lt;h3&gt;Add New Student&lt;/h3&gt;
+  &lt;form method="POST"&gt;
+    &lt;div class="mb-3"&gt;
+      &lt;label class="form-label"&gt;Full Name&lt;/label&gt;
+      &lt;input type="text" name="name" class="form-control" required&gt;
+    &lt;/div&gt;
+    &lt;div class="mb-3"&gt;
+      &lt;label class="form-label"&gt;Email&lt;/label&gt;
+      &lt;input type="email" name="email" class="form-control" required&gt;
+    &lt;/div&gt;
+    &lt;div class="mb-3"&gt;
+      &lt;label class="form-label"&gt;Phone&lt;/label&gt;
+      &lt;input type="text" name="phone" class="form-control"&gt;
+    &lt;/div&gt;
+    &lt;div class="mb-3"&gt;
+      &lt;label class="form-label"&gt;Course&lt;/label&gt;
+      &lt;input type="text" name="course" class="form-control" required&gt;
+    &lt;/div&gt;
+    &lt;div class="d-flex gap-2"&gt;
+      &lt;button type="submit" name="submit" class="btn btn-success"&gt;Add Student&lt;/button&gt;
+      &lt;a href="index.php" class="btn btn-secondary"&gt;Cancel&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">5</span>delete.php</div>
+              <div class="fp">📄 delete.php</div><textarea id="c-col-del" class="raw-code" style="display:none"><?php
+include "db.php";
+if (isset($_GET["id"])) {
+    $stmt = $conn->prepare("DELETE FROM students WHERE id = ?");
+    $stmt->execute([(int)$_GET["id"]]);
+}
+header("Location: index.php");
+exit;
+?></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;?php
+include "db.php";
+if (isset($_GET["id"])) {
+    $stmt = $conn-&gt;prepare("DELETE FROM students WHERE id = ?");
+    $stmt-&gt;execute([(int)$_GET["id"]]);
+}
+header("Location: index.php");
+exit;
+?&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-sql dl"
+              onclick="dlCode('c-col-sql','database.sql')">⬇ database.sql</button><button class="dl-php dl"
+              onclick="dlCode('c-col-db','db.php')">⬇ db.php</button><button class="dl-php dl"
+              onclick="dlCode('c-col-idx','index.php')">⬇ index.php</button><button class="dl-php dl"
+              onclick="dlCode('c-col-add','add.php')">⬇ add.php</button><button class="dl-php dl"
+              onclick="dlCode('c-col-del','delete.php')">⬇ delete.php</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="4">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(74,222,128,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="store" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Inventory Management — RetailPro Store</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">RetailPro Store · <span
+                  class="we">Exams: 4, 11</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(74,222,128,.12);color:#4ade80">PDO</span><span
+                class="tag" style="background:rgba(74,222,128,.12);color:#4ade80">Low Stock Alert</span><span
+                class="tag" style="background:rgba(74,222,128,.12);color:#4ade80">Category Filter</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build an inventory system for "RetailPro Store" using PDO with low stock alerts (red badge if
+              stock &lt; 5) and category filter.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>Database</div><textarea id="c-ret-sql" class="raw-code"
+                style="display:none">CREATE DATABASE retailpro_inventory;
+USE retailpro_inventory;
+CREATE TABLE products (
+  product_id    INT AUTO_INCREMENT PRIMARY KEY,
+  product_name  VARCHAR(100) NOT NULL,
+  category      VARCHAR(100) NOT NULL,
+  price         DECIMAL(10,2) NOT NULL,
+  stock_quantity INT NOT NULL,
+  supplier      VARCHAR(100)
+);</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">sql</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-sql">CREATE DATABASE retailpro_inventory;
+USE retailpro_inventory;
+CREATE TABLE products (
+  product_id    INT AUTO_INCREMENT PRIMARY KEY,
+  product_name  VARCHAR(100) NOT NULL,
+  category      VARCHAR(100) NOT NULL,
+  price         DECIMAL(10,2) NOT NULL,
+  stock_quantity INT NOT NULL,
+  supplier      VARCHAR(100)
+);</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>index.php — View + Filter + Alert</div>
+              <div class="fp">📄 index.php</div><textarea id="c-ret-idx" class="raw-code" style="display:none"><?php include "db.php"; ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RetailPro Inventory</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+  <h2>RetailPro — Inventory Management</h2>
+  <form method="GET" class="d-flex gap-2 my-3">
+    <input type="text" name="category" class="form-control" style="max-width:250px"
+      placeholder="Filter by category..."
+      value="<?php echo htmlspecialchars($_GET['category'] ?? ''); ?>">
+    <button type="submit" class="btn btn-outline-primary">Filter</button>
+    <a href="index.php" class="btn btn-outline-secondary">Clear</a>
+    <a href="add.php" class="btn btn-success ms-auto">+ Add Product</a>
+  </form>
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+    <?php
+    $category = $_GET["category"] ?? "";
+    if ($category) {
+        $stmt = $conn->prepare("SELECT * FROM products WHERE category LIKE ?");
+        $stmt->execute(["%$category%"]);
+    } else {
+        $stmt = $conn->query("SELECT * FROM products ORDER BY product_id DESC");
+    }
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)):
+        $stock = $row["stock_quantity"];
+        $badge = ($stock < 5)
+            ? "<span class='badge bg-danger'>Low Stock ({$stock})</span>"
+            : "<span class='badge bg-success'>In Stock ({$stock})</span>";
+    ?>
+    <tr>
+      <td><?php echo htmlspecialchars($row["product_name"]); ?></td>
+      <td><?php echo htmlspecialchars($row["category"]);     ?></td>
+      <td>$<?php echo number_format($row["price"], 2);       ?></td>
+      <td><?php echo $stock;                                  ?></td>
+      <td><?php echo $badge;                                  ?></td>
+      <td>
+        <a href="delete.php?id=<?php echo $row['product_id']; ?>"
+           class="btn btn-danger btn-sm"
+           onclick="return confirm('Delete?')">Delete</a>
+      </td>
+    </tr>
+    <?php endwhile; ?>
+    </tbody>
+  </table>
+</div>
+</body>
+</html></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;?php include "db.php"; ?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;RetailPro Inventory&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="container mt-4"&gt;
+  &lt;h2&gt;RetailPro — Inventory Management&lt;/h2&gt;
+  &lt;form method="GET" class="d-flex gap-2 my-3"&gt;
+    &lt;input type="text" name="category" class="form-control" style="max-width:250px"
+      placeholder="Filter by category..."
+      value="&lt;?php echo htmlspecialchars($_GET['category'] ?? ''); ?&gt;"&gt;
+    &lt;button type="submit" class="btn btn-outline-primary"&gt;Filter&lt;/button&gt;
+    &lt;a href="index.php" class="btn btn-outline-secondary"&gt;Clear&lt;/a&gt;
+    &lt;a href="add.php" class="btn btn-success ms-auto"&gt;+ Add Product&lt;/a&gt;
+  &lt;/form&gt;
+  &lt;table class="table table-bordered table-hover"&gt;
+    &lt;thead class="table-dark"&gt;
+      &lt;tr&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Category&lt;/th&gt;&lt;th&gt;Price&lt;/th&gt;&lt;th&gt;Stock&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th&gt;Action&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+    &lt;?php
+    $category = $_GET["category"] ?? "";
+    if ($category) {
+        $stmt = $conn-&gt;prepare("SELECT * FROM products WHERE category LIKE ?");
+        $stmt-&gt;execute(["%$category%"]);
+    } else {
+        $stmt = $conn-&gt;query("SELECT * FROM products ORDER BY product_id DESC");
+    }
+    while ($row = $stmt-&gt;fetch(PDO::FETCH_ASSOC)):
+        $stock = $row["stock_quantity"];
+        $badge = ($stock &lt; 5)
+            ? "&lt;span class='badge bg-danger'&gt;Low Stock ({$stock})&lt;/span&gt;"
+            : "&lt;span class='badge bg-success'&gt;In Stock ({$stock})&lt;/span&gt;";
+    ?&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;?php echo htmlspecialchars($row["product_name"]); ?&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;?php echo htmlspecialchars($row["category"]);     ?&gt;&lt;/td&gt;
+      &lt;td&gt;$&lt;?php echo number_format($row["price"], 2);       ?&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;?php echo $stock;                                  ?&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;?php echo $badge;                                  ?&gt;&lt;/td&gt;
+      &lt;td&gt;
+        &lt;a href="delete.php?id=&lt;?php echo $row['product_id']; ?&gt;"
+           class="btn btn-danger btn-sm"
+           onclick="return confirm('Delete?')"&gt;Delete&lt;/a&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;?php endwhile; ?&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-sql dl"
+              onclick="dlCode('c-ret-sql','database.sql')">⬇ database.sql</button><button class="dl-php dl"
+              onclick="dlCode('c-ret-idx','index.php')">⬇ index.php</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="4">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(74,222,128,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="calculator" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Web Calculator — EduTech Solutions</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">EduTech Solutions · <span
+                  class="we">Exams: 1, 8</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(74,222,128,.12);color:#4ade80">PHP
+                POST</span><span class="tag" style="background:rgba(74,222,128,.12);color:#4ade80">switch</span><span
+                class="tag" style="background:rgba(74,222,128,.12);color:#4ade80">Bootstrap</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a web-based calculator for "EduTech Solutions" using Bootstrap form and PHP switch
+              statement with division-by-zero protection.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>index.php — Form</div>
+              <div class="fp">📄 index.php</div><textarea id="c-calc-form" class="raw-code" style="display:none"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EduTech Calculator</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white text-center">
+          <h4>🧮 EduTech Calculator</h4>
+        </div>
+        <div class="card-body">
+          <form action="calc.php" method="POST">
+            <div class="mb-3">
+              <label class="form-label fw-bold">First Number</label>
+              <input type="number" name="num1" class="form-control" step="any" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold">Second Number</label>
+              <input type="number" name="num2" class="form-control" step="any" required>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">Operation</label>
+              <div class="d-flex flex-wrap gap-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="operation" value="add" checked>
+                  <label class="form-check-label">➕ Add</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="operation" value="subtract">
+                  <label class="form-check-label">➖ Subtract</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="operation" value="multiply">
+                  <label class="form-check-label">✖️ Multiply</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="operation" value="divide">
+                  <label class="form-check-label">➗ Divide</label>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <button type="reset"  class="btn btn-secondary flex-fill">Reset</button>
+              <button type="submit" class="btn btn-primary  flex-fill">Calculate</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;EduTech Calculator&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body class="bg-light"&gt;
+&lt;div class="container py-5"&gt;
+  &lt;div class="row justify-content-center"&gt;
+    &lt;div class="col-md-5"&gt;
+      &lt;div class="card shadow"&gt;
+        &lt;div class="card-header bg-primary text-white text-center"&gt;
+          &lt;h4&gt;🧮 EduTech Calculator&lt;/h4&gt;
+        &lt;/div&gt;
+        &lt;div class="card-body"&gt;
+          &lt;form action="calc.php" method="POST"&gt;
+            &lt;div class="mb-3"&gt;
+              &lt;label class="form-label fw-bold"&gt;First Number&lt;/label&gt;
+              &lt;input type="number" name="num1" class="form-control" step="any" required&gt;
+            &lt;/div&gt;
+            &lt;div class="mb-3"&gt;
+              &lt;label class="form-label fw-bold"&gt;Second Number&lt;/label&gt;
+              &lt;input type="number" name="num2" class="form-control" step="any" required&gt;
+            &lt;/div&gt;
+            &lt;div class="mb-4"&gt;
+              &lt;label class="form-label fw-bold"&gt;Operation&lt;/label&gt;
+              &lt;div class="d-flex flex-wrap gap-3"&gt;
+                &lt;div class="form-check"&gt;
+                  &lt;input class="form-check-input" type="radio" name="operation" value="add" checked&gt;
+                  &lt;label class="form-check-label"&gt;➕ Add&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class="form-check"&gt;
+                  &lt;input class="form-check-input" type="radio" name="operation" value="subtract"&gt;
+                  &lt;label class="form-check-label"&gt;➖ Subtract&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class="form-check"&gt;
+                  &lt;input class="form-check-input" type="radio" name="operation" value="multiply"&gt;
+                  &lt;label class="form-check-label"&gt;✖️ Multiply&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class="form-check"&gt;
+                  &lt;input class="form-check-input" type="radio" name="operation" value="divide"&gt;
+                  &lt;label class="form-check-label"&gt;➗ Divide&lt;/label&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="d-flex gap-2"&gt;
+              &lt;button type="reset"  class="btn btn-secondary flex-fill"&gt;Reset&lt;/button&gt;
+              &lt;button type="submit" class="btn btn-primary  flex-fill"&gt;Calculate&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/form&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>calc.php — Logic</div>
+              <div class="fp">📄 calc.php</div><textarea id="c-calc-logic" class="raw-code" style="display:none"><?php
+$num1      = (float)$_POST["num1"];
+$num2      = (float)$_POST["num2"];
+$operation = $_POST["operation"];
+
+switch ($operation) {
+    case "add":
+        $result = $num1 + $num2;
+        $symbol = "+";
+        break;
+    case "subtract":
+        $result = $num1 - $num2;
+        $symbol = "-";
+        break;
+    case "multiply":
+        $result = $num1 * $num2;
+        $symbol = "x";
+        break;
+    case "divide":
+        $symbol = "/";
+        if ($num2 == 0) {
+            $result = "Error: Cannot divide by zero!";
+        } else {
+            $result = $num1 / $num2;
+        }
+        break;
+    default:
+        $result = "Invalid operation";
+        $symbol = "?";
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator Result</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div class="container py-5 text-center">
+  <div class="card shadow mx-auto" style="max-width:420px">
+    <div class="card-header bg-success text-white">
+      <h4>✅ Result</h4>
+    </div>
+    <div class="card-body py-4">
+      <p class="fs-5 text-muted">
+        <?php echo "$num1 $symbol $num2 ="; ?>
+      </p>
+      <div class="display-4 fw-bold text-success">
+        <?php echo $result; ?>
+      </div>
+      <a href="index.php" class="btn btn-primary mt-4">← Calculate Again</a>
+    </div>
+  </div>
+</div>
+</body>
+</html></textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">&lt;?php
+$num1      = (float)$_POST["num1"];
+$num2      = (float)$_POST["num2"];
+$operation = $_POST["operation"];
+
+switch ($operation) {
+    case "add":
+        $result = $num1 + $num2;
+        $symbol = "+";
+        break;
+    case "subtract":
+        $result = $num1 - $num2;
+        $symbol = "-";
+        break;
+    case "multiply":
+        $result = $num1 * $num2;
+        $symbol = "x";
+        break;
+    case "divide":
+        $symbol = "/";
+        if ($num2 == 0) {
+            $result = "Error: Cannot divide by zero!";
+        } else {
+            $result = $num1 / $num2;
+        }
+        break;
+    default:
+        $result = "Invalid operation";
+        $symbol = "?";
+}
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Calculator Result&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body class="bg-light"&gt;
+&lt;div class="container py-5 text-center"&gt;
+  &lt;div class="card shadow mx-auto" style="max-width:420px"&gt;
+    &lt;div class="card-header bg-success text-white"&gt;
+      &lt;h4&gt;✅ Result&lt;/h4&gt;
+    &lt;/div&gt;
+    &lt;div class="card-body py-4"&gt;
+      &lt;p class="fs-5 text-muted"&gt;
+        &lt;?php echo "$num1 $symbol $num2 ="; ?&gt;
+      &lt;/p&gt;
+      &lt;div class="display-4 fw-bold text-success"&gt;
+        &lt;?php echo $result; ?&gt;
+      &lt;/div&gt;
+      &lt;a href="index.php" class="btn btn-primary mt-4"&gt;← Calculate Again&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-php dl"
+              onclick="dlCode('c-calc-form','index.php')">⬇ index.php</button><button class="dl-php dl"
+              onclick="dlCode('c-calc-logic','calc.php')">⬇ calc.php</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="unit-section" data-unit="5" id="unit21">
+      <div class="unit-header" style="--unit-color: var(--unit21)">
+        <div class="unit-num">5</div>
+        <div>
+          <div class="unit-title">Unit 5 &ndash; Laravel</div>
+          <div class="unit-subtitle">MVC · Migrations · Eloquent · Blade · REST API</div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="5">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(251,191,36,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="clapperboard" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Movie Manager — Cinephile Hub</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">Cinephile Hub · <span
+                  class="we">Exams: 1, 3</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(251,191,36,.12);color:#fbbf24">MVC</span><span
+                class="tag" style="background:rgba(251,191,36,.12);color:#fbbf24">Migrations</span><span class="tag"
+                style="background:rgba(251,191,36,.12);color:#fbbf24">Blade</span><span class="tag"
+                style="background:rgba(251,191,36,.12);color:#fbbf24">Seeder</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a movie collection manager for "Cinephile Hub" using Laravel MVC with migrations,
+              factory/seeder, and Blade views.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li><b>Migration:</b> movies table: id, title, director, release_year, rating</li>
+              <li><b>Seeder:</b> MovieFactory → 10 fake records</li>
+              <li><b>Routes:</b> / → index · /movies/{id} → show</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>Create Project</div>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">bash</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-bash">composer create-project laravel/laravel cinephile-hub
+cd cinephile-hub
+php artisan make:model Movie -mcrfs</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>Migration</div><textarea id="c-mov-mig" class="raw-code"
+                style="display:none">public function up(): void
+{
+    Schema::create('movies', function (Blueprint $table) {
+        $table->id();
+        $table->string('title');
+        $table->string('director');
+        $table->integer('release_year');
+        $table->decimal('rating', 2, 1);
+        $table->timestamps();
+    });
+}
+// Run: php artisan migrate</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">public function up(): void
+{
+    Schema::create('movies', function (Blueprint $table) {
+        $table-&gt;id();
+        $table-&gt;string('title');
+        $table-&gt;string('director');
+        $table-&gt;integer('release_year');
+        $table-&gt;decimal('rating', 2, 1);
+        $table-&gt;timestamps();
+    });
+}
+// Run: php artisan migrate</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">3</span>Factory + Seeder</div><textarea id="c-mov-fac" class="raw-code"
+                style="display:none">public function definition(): array
+{
+    return [
+        'title'        => $this->faker->words(3, true),
+        'director'     => $this->faker->name(),
+        'release_year' => $this->faker->year(),
+        'rating'       => $this->faker->randomFloat(1, 5.0, 9.9),
+    ];
+}
+
+// DatabaseSeeder.php
+public function run(): void
+{
+    Movie::factory()->count(10)->create();
+}
+// Run: php artisan db:seed</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">public function definition(): array
+{
+    return [
+        'title'        =&gt; $this-&gt;faker-&gt;words(3, true),
+        'director'     =&gt; $this-&gt;faker-&gt;name(),
+        'release_year' =&gt; $this-&gt;faker-&gt;year(),
+        'rating'       =&gt; $this-&gt;faker-&gt;randomFloat(1, 5.0, 9.9),
+    ];
+}
+
+// DatabaseSeeder.php
+public function run(): void
+{
+    Movie::factory()-&gt;count(10)-&gt;create();
+}
+// Run: php artisan db:seed</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">4</span>MovieController.php</div>
+              <div class="fp">📄 app/Http/Controllers/MovieController.php</div><textarea id="c-mov-ctrl"
+                class="raw-code" style="display:none">use App\Models\Movie;
+
+class MovieController extends Controller
+{
+    public function index()
+    {
+        $movies = Movie::latest()->get();
+        return view('movies.index', compact('movies'));
+    }
+
+    public function show(Movie $movie)
+    {
+        return view('movies.show', compact('movie'));
+    }
+}</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">use App\Models\Movie;
+
+class MovieController extends Controller
+{
+    public function index()
+    {
+        $movies = Movie::latest()-&gt;get();
+        return view('movies.index', compact('movies'));
+    }
+
+    public function show(Movie $movie)
+    {
+        return view('movies.show', compact('movie'));
+    }
+}</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">5</span>Routes (web.php)</div>
+              <div class="fp">📄 routes/web.php</div><textarea id="c-mov-rt" class="raw-code" style="display:none">use App\Http\Controllers\MovieController;
+
+Route::get('/', [MovieController::class, 'index'])->name('movies.index');
+Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show');</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">use App\Http\Controllers\MovieController;
+
+Route::get('/', [MovieController::class, 'index'])-&gt;name('movies.index');
+Route::get('/movies/{movie}', [MovieController::class, 'show'])-&gt;name('movies.show');</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">6</span>index.blade.php</div>
+              <div class="fp">📄 resources/views/movies/index.blade.php</div><textarea id="c-mov-idx" class="raw-code"
+                style="display:none">@extends('layouts.app')
+@section('content')
+<div class="container mt-4">
+  <h2 class="mb-4">Movie Collection</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    @forelse($movies as $movie)
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ $movie->title }}</h5>
+            <p class="card-text text-muted">
+              Director: {{ $movie->director }}<br>
+              Year: {{ $movie->release_year }}<br>
+              Rating: {{ $movie->rating }}
+            </p>
+            <a href="{{ route('movies.show', $movie->id) }}"
+               class="btn btn-primary btn-sm">View Details</a>
+          </div>
+        </div>
+      </div>
+    @empty
+      <p class="text-muted">No movies. Run: php artisan db:seed</p>
+    @endforelse
+  </div>
+</div>
+@endsection</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">@extends('layouts.app')
+@section('content')
+&lt;div class="container mt-4"&gt;
+  &lt;h2 class="mb-4"&gt;Movie Collection&lt;/h2&gt;
+  &lt;div class="row row-cols-1 row-cols-md-3 g-4"&gt;
+    @forelse($movies as $movie)
+      &lt;div class="col"&gt;
+        &lt;div class="card h-100 shadow-sm"&gt;
+          &lt;div class="card-body"&gt;
+            &lt;h5 class="card-title"&gt;{{ $movie-&gt;title }}&lt;/h5&gt;
+            &lt;p class="card-text text-muted"&gt;
+              Director: {{ $movie-&gt;director }}&lt;br&gt;
+              Year: {{ $movie-&gt;release_year }}&lt;br&gt;
+              Rating: {{ $movie-&gt;rating }}
+            &lt;/p&gt;
+            &lt;a href="{{ route('movies.show', $movie-&gt;id) }}"
+               class="btn btn-primary btn-sm"&gt;View Details&lt;/a&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    @empty
+      &lt;p class="text-muted"&gt;No movies. Run: php artisan db:seed&lt;/p&gt;
+    @endforelse
+  &lt;/div&gt;
+&lt;/div&gt;
+@endsection</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">7</span>show.blade.php</div>
+              <div class="fp">📄 resources/views/movies/show.blade.php</div><textarea id="c-mov-show" class="raw-code"
+                style="display:none">@extends('layouts.app')
+@section('content')
+<div class="container mt-4">
+  <div class="card shadow mx-auto" style="max-width:500px">
+    <div class="card-header bg-dark text-white">
+      <h4>{{ $movie->title }}</h4>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <tr><th>Director</th><td>{{ $movie->director }}</td></tr>
+        <tr><th>Year</th><td>{{ $movie->release_year }}</td></tr>
+        <tr><th>Rating</th><td>{{ $movie->rating }}</td></tr>
+      </table>
+      <a href="{{ route('movies.index') }}" class="btn btn-secondary">← Back</a>
+    </div>
+  </div>
+</div>
+@endsection</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">@extends('layouts.app')
+@section('content')
+&lt;div class="container mt-4"&gt;
+  &lt;div class="card shadow mx-auto" style="max-width:500px"&gt;
+    &lt;div class="card-header bg-dark text-white"&gt;
+      &lt;h4&gt;{{ $movie-&gt;title }}&lt;/h4&gt;
+    &lt;/div&gt;
+    &lt;div class="card-body"&gt;
+      &lt;table class="table"&gt;
+        &lt;tr&gt;&lt;th&gt;Director&lt;/th&gt;&lt;td&gt;{{ $movie-&gt;director }}&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;th&gt;Year&lt;/th&gt;&lt;td&gt;{{ $movie-&gt;release_year }}&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;th&gt;Rating&lt;/th&gt;&lt;td&gt;{{ $movie-&gt;rating }}&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+      &lt;a href="{{ route('movies.index') }}" class="btn btn-secondary"&gt;← Back&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+@endsection</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-php dl"
+              onclick="dlCode('c-mov-ctrl','MovieController.php')">⬇ MovieController.php</button><button
+              class="dl-php dl" onclick="dlCode('c-mov-idx','index.blade.php')">⬇ index.blade.php</button><button
+              class="dl-php dl" onclick="dlCode('c-mov-show','show.blade.php')">⬇ show.blade.php</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="5">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(251,191,36,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="shopping-cart" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Product API — ECommerce Solutions Inc.</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">ECommerce Solutions Inc. ·
+                <span class="we">Exams: 5, 6</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(251,191,36,.12);color:#fbbf24">Laravel
+                API</span><span class="tag" style="background:rgba(251,191,36,.12);color:#fbbf24">CRUD</span><span
+                class="tag" style="background:rgba(251,191,36,.12);color:#fbbf24">Postman</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a product management API for "ECommerce Solutions Inc." using Laravel with full CRUD
+              (name, description, price, category, stock).</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>Setup</div>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">bash</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-bash">composer create-project laravel/laravel ecommerce-api
+php artisan make:model Product -mfs
+php artisan install:api
+php artisan make:controller Api/ProductController --api</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>Migration + fillable</div><textarea id="c-ecom-mig"
+                class="raw-code" style="display:none">Schema::create('products', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->text('description');
+    $table->decimal('price', 8, 2);
+    $table->string('category');
+    $table->integer('stock');
+    $table->timestamps();
+});
+// Product Model — add:
+protected $fillable = ['name','description','price','category','stock'];</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">Schema::create('products', function (Blueprint $table) {
+    $table-&gt;id();
+    $table-&gt;string('name');
+    $table-&gt;text('description');
+    $table-&gt;decimal('price', 8, 2);
+    $table-&gt;string('category');
+    $table-&gt;integer('stock');
+    $table-&gt;timestamps();
+});
+// Product Model — add:
+protected $fillable = ['name','description','price','category','stock'];</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">3</span>ProductController + Routes</div>
+              <div class="fp">📄 app/Http/Controllers/Api/ProductController.php</div><textarea id="c-ecom-ctrl"
+                class="raw-code" style="display:none">use App\Models\Product;
+
+class ProductController extends Controller
+{
+    public function index()
+    {
+        return response()->json(Product::all(), 200);
+    }
+
+    public function store(Request $request)
+    {
+        $product = Product::create($request->all());
+        return response()->json($product, 201);
+    }
+
+    public function show($id)
+    {
+        $product = Product::find($id);
+        if (!$product) return response()->json(['message' => 'Not found'], 404);
+        return response()->json($product, 200);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $product->update($request->all());
+        return response()->json($product, 200);
+    }
+
+    public function destroy($id)
+    {
+        Product::find($id)->delete();
+        return response()->json(['message' => 'Product deleted'], 200);
+    }
+}
+
+// routes/api.php
+Route::apiResource('products', ProductController::class);
+
+// Test in Postman:
+// POST   http://127.0.0.1:8000/api/products
+//        { "name":"Laptop","description":"Gaming","price":1200,"category":"Electronics","stock":10 }
+// GET    http://127.0.0.1:8000/api/products
+// PUT    http://127.0.0.1:8000/api/products/1
+// DELETE http://127.0.0.1:8000/api/products/1</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">use App\Models\Product;
+
+class ProductController extends Controller
+{
+    public function index()
+    {
+        return response()-&gt;json(Product::all(), 200);
+    }
+
+    public function store(Request $request)
+    {
+        $product = Product::create($request-&gt;all());
+        return response()-&gt;json($product, 201);
+    }
+
+    public function show($id)
+    {
+        $product = Product::find($id);
+        if (!$product) return response()-&gt;json(['message' =&gt; 'Not found'], 404);
+        return response()-&gt;json($product, 200);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $product-&gt;update($request-&gt;all());
+        return response()-&gt;json($product, 200);
+    }
+
+    public function destroy($id)
+    {
+        Product::find($id)-&gt;delete();
+        return response()-&gt;json(['message' =&gt; 'Product deleted'], 200);
+    }
+}
+
+// routes/api.php
+Route::apiResource('products', ProductController::class);
+
+// Test in Postman:
+// POST   http://127.0.0.1:8000/api/products
+//        { "name":"Laptop","description":"Gaming","price":1200,"category":"Electronics","stock":10 }
+// GET    http://127.0.0.1:8000/api/products
+// PUT    http://127.0.0.1:8000/api/products/1
+// DELETE http://127.0.0.1:8000/api/products/1</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-php dl"
+              onclick="dlCode('c-ecom-ctrl','ProductController.php')">⬇ ProductController.php</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="5">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(251,191,36,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="file-text" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Blog Management API — Digital Publishers Ltd.</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">Digital Publishers Ltd. · <span
+                  class="we">Exams: 7, 11</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(251,191,36,.12);color:#fbbf24">Laravel
+                API</span><span class="tag" style="background:rgba(251,191,36,.12);color:#fbbf24">Posts CRUD</span><span
+                class="tag" style="background:rgba(251,191,36,.12);color:#fbbf24">status field</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a blog management API for "Digital Publishers Ltd." with posts CRUD — fields: title,
+              content, author, category, published_at, status (draft/published).</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>Setup</div>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">bash</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-bash">php artisan make:model Post -mfs
+php artisan install:api
+php artisan make:controller Api/PostController --api</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>Migration + fillable</div><textarea id="c-blog-mig"
+                class="raw-code" style="display:none">Schema::create('posts', function (Blueprint $table) {
+    $table->id();
+    $table->string('title');
+    $table->text('content');
+    $table->string('author');
+    $table->string('category');
+    $table->timestamp('published_at')->nullable();
+    $table->enum('status', ['draft', 'published'])->default('draft');
+    $table->timestamps();
+});
+// Post Model fillable:
+protected $fillable = ['title','content','author','category','published_at','status'];</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">Schema::create('posts', function (Blueprint $table) {
+    $table-&gt;id();
+    $table-&gt;string('title');
+    $table-&gt;text('content');
+    $table-&gt;string('author');
+    $table-&gt;string('category');
+    $table-&gt;timestamp('published_at')-&gt;nullable();
+    $table-&gt;enum('status', ['draft', 'published'])-&gt;default('draft');
+    $table-&gt;timestamps();
+});
+// Post Model fillable:
+protected $fillable = ['title','content','author','category','published_at','status'];</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">3</span>PostController + Routes</div>
+              <div class="fp">📄 app/Http/Controllers/Api/PostController.php</div><textarea id="c-blog-ctrl"
+                class="raw-code" style="display:none">use App\Models\Post;
+
+class PostController extends Controller
+{
+    public function index()   { return Post::all(); }
+
+    public function store(Request $request)
+    {
+        return Post::create($request->all());
+    }
+
+    public function show($id)
+    {
+        return Post::findOrFail($id);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $post = Post::findOrFail($id);
+        $post->update($request->all());
+        return $post;
+    }
+
+    public function destroy($id)
+    {
+        Post::findOrFail($id)->delete();
+        return response()->json(['message' => 'Post deleted']);
+    }
+}
+
+// routes/api.php
+Route::apiResource('posts', PostController::class);
+
+// POST body example:
+// { "title":"My First Post","content":"Hello World","author":"Ahmed","category":"Tech","status":"draft" }</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">php</span><button class="cb" onclick="cp(this)">Copy</button>
+                </div>
+                <pre><code class="language-php">use App\Models\Post;
+
+class PostController extends Controller
+{
+    public function index()   { return Post::all(); }
+
+    public function store(Request $request)
+    {
+        return Post::create($request-&gt;all());
+    }
+
+    public function show($id)
+    {
+        return Post::findOrFail($id);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $post = Post::findOrFail($id);
+        $post-&gt;update($request-&gt;all());
+        return $post;
+    }
+
+    public function destroy($id)
+    {
+        Post::findOrFail($id)-&gt;delete();
+        return response()-&gt;json(['message' =&gt; 'Post deleted']);
+    }
+}
+
+// routes/api.php
+Route::apiResource('posts', PostController::class);
+
+// POST body example:
+// { "title":"My First Post","content":"Hello World","author":"Ahmed","category":"Tech","status":"draft" }</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-php dl"
+              onclick="dlCode('c-blog-ctrl','PostController.php')">⬇ PostController.php</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="unit-section" data-unit="6" id="unit22">
+      <div class="unit-header" style="--unit-color: var(--unit22)">
+        <div class="unit-num">6</div>
+        <div>
+          <div class="unit-title">Unit 6 &ndash; Python GUI</div>
+          <div class="unit-subtitle">Tkinter · grid · messagebox · Entry · Validation</div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="6">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(251,146,60,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="lock" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Login Form GUI — SecureAccess Corp</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">SecureAccess Corp · <span
+                  class="we">Exams: 4, 7, 9</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag"
+                style="background:rgba(251,146,60,.12);color:#fb923c">Tkinter</span><span class="tag"
+                style="background:rgba(251,146,60,.12);color:#fb923c">grid</span><span class="tag"
+                style="background:rgba(251,146,60,.12);color:#fb923c">messagebox</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a login form GUI for "SecureAccess Corp" using Tkinter with username/password fields,
+              grid layout, and messagebox feedback.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li><b>Widgets:</b> Label, Entry (show='*'), Button</li>
+              <li><b>Layout:</b> grid geometry manager</li>
+              <li><b>Credentials:</b> username='admin' · password='1234'</li>
+              <li><b>Feedback:</b> showinfo on success · showerror on wrong</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>login.py</div>
+              <div class="fp">📄 login.py</div><textarea id="c-login" class="raw-code" style="display:none">import tkinter as tk
+from tkinter import messagebox
+
+# Login validation function
+def login():
+    username = username_entry.get()
+    password = password_entry.get()
+    if username == "user" and password == "password":
+        messagebox.showinfo("Success", "Login Successful!")
+    else:
+        messagebox.showerror("Error", "Incorrect username or password.")
+        password_entry.delete(0, tk.END)  # Clear password field
+
+# Main application window
+root = tk.Tk()
+root.title("Login Form")
+root.geometry("300x120")
+root.resizable(False, False)
+
+# Username Label & Entry
+username_label = tk.Label(root, text="Username:")
+username_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
+username_entry = tk.Entry(root)
+username_entry.grid(row=0, column=1, padx=5, pady=5)
+
+# Password Label & Entry
+password_label = tk.Label(root, text="Password:")
+password_label.grid(row=1, column=0, padx=5, pady=5, sticky="w")
+password_entry = tk.Entry(root, show="*")  # Hide password input
+password_entry.grid(row=1, column=1, padx=5, pady=5)
+
+# Login Button
+login_button = tk.Button(root, text="Login", command=login)
+login_button.grid(row=2, column=0, columnspan=2, padx=5, pady=10)
+
+# Run the application
+root.mainloop()</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">python</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-python">import tkinter as tk
+from tkinter import messagebox
+
+root = tk.Tk()
+root.title("SecureAccess Corp - Login")
+root.geometry("360x240")
+root.resizable(False, False)
+root.configure(bg="#1e293b")
+
+tk.Label(root, text="SecureAccess Corp", font=("Arial", 14, "bold"),
+         bg="#1e293b", fg="white").grid(row=0, column=0, columnspan=2, pady=20)
+
+tk.Label(root, text="Username:", font=("Arial", 10),
+         bg="#1e293b", fg="#94a3b8").grid(row=1, column=0, padx=20, pady=8, sticky="e")
+username_entry = tk.Entry(root, width=24, font=("Arial", 10))
+username_entry.grid(row=1, column=1, padx=10, pady=8)
+
+tk.Label(root, text="Password:", font=("Arial", 10),
+         bg="#1e293b", fg="#94a3b8").grid(row=2, column=0, padx=20, pady=8, sticky="e")
+password_entry = tk.Entry(root, show="*", width=24, font=("Arial", 10))
+password_entry.grid(row=2, column=1, padx=10, pady=8)
+
+def login():
+    u = username_entry.get().strip()
+    p = password_entry.get().strip()
+    if not u or not p:
+        messagebox.showwarning("Warning", "Please fill in all fields!")
+    elif u == "admin" and p == "1234":
+        messagebox.showinfo("Success", f"Welcome, {u}! Login successful.")
+    else:
+        messagebox.showerror("Error", "Invalid username or password!")
+        password_entry.delete(0, "end")
+
+tk.Button(root, text="Login", command=login, bg="#3b82f6", fg="white",
+          font=("Arial", 10, "bold"), width=22, pady=4,
+          relief="flat", cursor="hand2").grid(row=3, column=0, columnspan=2, pady=20)
+
+root.mainloop()</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-py dl"
+              onclick="dlCode('c-login','login.py')">⬇ login.py</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="6">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(251,146,60,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="shopping-bag" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Price Calculator — QuickMart Stores</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">QuickMart Stores · <span
+                  class="we">Exams: 10, 11, 12</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag"
+                style="background:rgba(251,146,60,.12);color:#fb923c">Tkinter</span><span class="tag"
+                style="background:rgba(251,146,60,.12);color:#fb923c">Discount</span><span class="tag"
+                style="background:rgba(251,146,60,.12);color:#fb923c">Validation</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a price calculator GUI for "QuickMart Stores" using Tkinter that applies a discount
+              percentage and shows the final price.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li><b>Inputs:</b> Original price + discount percentage</li>
+              <li><b>Logic:</b> Calculate with validation (price>0, discount 0-100)</li>
+              <li><b>Buttons:</b> Calculate + Clear</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>price_calculator.py</div>
+              <div class="fp">📄 price_calculator.py</div><textarea id="c-pcalc" class="raw-code" style="display:none">import tkinter as tk
+from tkinter import messagebox
+
+root = tk.Tk()
+root.title("QuickMart Price Calculator")
+root.geometry("400x300")
+root.resizable(False, False)
+root.configure(bg="#f0fdf4")
+
+tk.Label(root, text="QuickMart Price Calculator",
+         font=("Arial", 13, "bold"), bg="#f0fdf4", fg="#166534").pack(pady=16)
+
+frame = tk.Frame(root, bg="#f0fdf4")
+frame.pack(pady=5)
+
+tk.Label(frame, text="Original Price ($):", font=("Arial", 10),
+         bg="#f0fdf4", fg="#374151").grid(row=0, column=0, padx=14, pady=8, sticky="e")
+price_entry = tk.Entry(frame, width=20, font=("Arial", 10))
+price_entry.grid(row=0, column=1, padx=10)
+
+tk.Label(frame, text="Discount (%):", font=("Arial", 10),
+         bg="#f0fdf4", fg="#374151").grid(row=1, column=0, padx=14, pady=8, sticky="e")
+discount_entry = tk.Entry(frame, width=20, font=("Arial", 10))
+discount_entry.grid(row=1, column=1, padx=10)
+
+result_label = tk.Label(root, text="", font=("Arial", 11, "bold"),
+                        bg="#f0fdf4", fg="#15803d")
+result_label.pack(pady=10)
+
+def calculate():
+    try:
+        price    = float(price_entry.get())
+        discount = float(discount_entry.get())
+        if price <= 0:
+            messagebox.showerror("Error", "Price must be greater than 0!"); return
+        if not (0 <= discount <= 100):
+            messagebox.showwarning("Warning", "Discount must be between 0 and 100!"); return
+        amount = price * (discount / 100)
+        final  = price - amount
+        result_label.config(text=f"Discount: ${amount:.2f}  |  Final: ${final:.2f}")
+    except ValueError:
+        messagebox.showerror("Error", "Please enter valid numbers!")
+
+def clear():
+    price_entry.delete(0, "end")
+    discount_entry.delete(0, "end")
+    result_label.config(text="")
+
+btn_frame = tk.Frame(root, bg="#f0fdf4")
+btn_frame.pack()
+tk.Button(btn_frame, text="Calculate", command=calculate,
+          bg="#16a34a", fg="white", font=("Arial", 10, "bold"),
+          width=14, pady=5, relief="flat", cursor="hand2").grid(row=0, column=0, padx=8)
+tk.Button(btn_frame, text="Clear", command=clear,
+          bg="#6b7280", fg="white", font=("Arial", 10),
+          width=10, pady=5, relief="flat", cursor="hand2").grid(row=0, column=1, padx=8)
+
+root.mainloop()</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">python</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-python">import tkinter as tk
+from tkinter import messagebox
+
+root = tk.Tk()
+root.title("QuickMart Price Calculator")
+root.geometry("400x300")
+root.resizable(False, False)
+root.configure(bg="#f0fdf4")
+
+tk.Label(root, text="QuickMart Price Calculator",
+         font=("Arial", 13, "bold"), bg="#f0fdf4", fg="#166534").pack(pady=16)
+
+frame = tk.Frame(root, bg="#f0fdf4")
+frame.pack(pady=5)
+
+tk.Label(frame, text="Original Price ($):", font=("Arial", 10),
+         bg="#f0fdf4", fg="#374151").grid(row=0, column=0, padx=14, pady=8, sticky="e")
+price_entry = tk.Entry(frame, width=20, font=("Arial", 10))
+price_entry.grid(row=0, column=1, padx=10)
+
+tk.Label(frame, text="Discount (%):", font=("Arial", 10),
+         bg="#f0fdf4", fg="#374151").grid(row=1, column=0, padx=14, pady=8, sticky="e")
+discount_entry = tk.Entry(frame, width=20, font=("Arial", 10))
+discount_entry.grid(row=1, column=1, padx=10)
+
+result_label = tk.Label(root, text="", font=("Arial", 11, "bold"),
+                        bg="#f0fdf4", fg="#15803d")
+result_label.pack(pady=10)
+
+def calculate():
+    try:
+        price    = float(price_entry.get())
+        discount = float(discount_entry.get())
+        if price &lt;= 0:
+            messagebox.showerror("Error", "Price must be greater than 0!"); return
+        if not (0 &lt;= discount &lt;= 100):
+            messagebox.showwarning("Warning", "Discount must be between 0 and 100!"); return
+        amount = price * (discount / 100)
+        final  = price - amount
+        result_label.config(text=f"Discount: ${amount:.2f}  |  Final: ${final:.2f}")
+    except ValueError:
+        messagebox.showerror("Error", "Please enter valid numbers!")
+
+def clear():
+    price_entry.delete(0, "end")
+    discount_entry.delete(0, "end")
+    result_label.config(text="")
+
+btn_frame = tk.Frame(root, bg="#f0fdf4")
+btn_frame.pack()
+tk.Button(btn_frame, text="Calculate", command=calculate,
+          bg="#16a34a", fg="white", font=("Arial", 10, "bold"),
+          width=14, pady=5, relief="flat", cursor="hand2").grid(row=0, column=0, padx=8)
+tk.Button(btn_frame, text="Clear", command=clear,
+          bg="#6b7280", fg="white", font=("Arial", 10),
+          width=10, pady=5, relief="flat", cursor="hand2").grid(row=0, column=1, padx=8)
+
+root.mainloop()</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-py dl"
+              onclick="dlCode('c-pcalc','price_calculator.py')">⬇ price_calculator.py</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="unit-section" data-unit="7" id="unit23">
+      <div class="unit-header" style="--unit-color: var(--unit23)">
+        <div class="unit-num">7</div>
+        <div>
+          <div class="unit-title">Unit 7 &ndash; Design Patterns</div>
+          <div class="unit-subtitle">Factory Pattern (Creational) · Adapter Pattern (Structural)</div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="7">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(244,114,182,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="factory" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Car Manufacturing — AutoTech Solutions</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">AutoTech Solutions · <span
+                  class="we">Exams: 4, 6, 8</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(244,114,182,.12);color:#f472b6">Factory
+                Pattern</span><span class="tag"
+                style="background:rgba(244,114,182,.12);color:#f472b6">Creational</span><span class="tag"
+                style="background:rgba(244,114,182,.12);color:#f472b6">JS OOP</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build a car manufacturing system for "AutoTech Solutions" using the Factory Design Pattern in
+              JavaScript — create different car types without exposing creation logic.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li><b>Classes:</b> Sedan, SUV, Truck — each with getInfo()</li>
+              <li><b>Factory:</b> CarFactory.createCar(type) returns correct object</li>
+              <li><b>Test:</b> Create one of each, call getInfo()</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>carFactory.js</div>
+              <div class="fp">📄 carFactory.js</div><textarea id="c-factory" class="raw-code" style="display:none">// Step 1: Car Classes
+class Sedan {
+  constructor() { this.type = "Sedan"; this.doors = 4; this.fuel = "Petrol"; }
+  getInfo() { return `${this.type}: ${this.doors} doors, Fuel: ${this.fuel}`; }
+}
+
+class SUV {
+  constructor() { this.type = "SUV"; this.doors = 5; this.fuel = "Diesel"; }
+  getInfo() { return `${this.type}: ${this.doors} doors, Fuel: ${this.fuel}`; }
+}
+
+class Truck {
+  constructor() { this.type = "Truck"; this.doors = 2; this.fuel = "Diesel"; }
+  getInfo() { return `${this.type}: ${this.doors} doors, Fuel: ${this.fuel}`; }
+}
+
+// Step 2: Factory Class
+class CarFactory {
+  static createCar(type) {
+    switch (type.toLowerCase()) {
+      case "sedan": return new Sedan();
+      case "suv":   return new SUV();
+      case "truck": return new Truck();
+      default: throw new Error(`Unknown car type: ${type}`);
+    }
+  }
+}
+
+// Step 3: Use the Factory
+const sedan = CarFactory.createCar("sedan");
+const suv   = CarFactory.createCar("suv");
+const truck = CarFactory.createCar("truck");
+
+console.log(sedan.getInfo()); // Sedan: 4 doors, Fuel: Petrol
+console.log(suv.getInfo());   // SUV: 5 doors, Fuel: Diesel
+console.log(truck.getInfo()); // Truck: 2 doors, Fuel: Diesel</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">javascript</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-javascript">// Step 1: Car Classes
+class Sedan {
+  constructor() { this.type = "Sedan"; this.doors = 4; this.fuel = "Petrol"; }
+  getInfo() { return `${this.type}: ${this.doors} doors, Fuel: ${this.fuel}`; }
+}
+
+class SUV {
+  constructor() { this.type = "SUV"; this.doors = 5; this.fuel = "Diesel"; }
+  getInfo() { return `${this.type}: ${this.doors} doors, Fuel: ${this.fuel}`; }
+}
+
+class Truck {
+  constructor() { this.type = "Truck"; this.doors = 2; this.fuel = "Diesel"; }
+  getInfo() { return `${this.type}: ${this.doors} doors, Fuel: ${this.fuel}`; }
+}
+
+// Step 2: Factory Class
+class CarFactory {
+  static createCar(type) {
+    switch (type.toLowerCase()) {
+      case "sedan": return new Sedan();
+      case "suv":   return new SUV();
+      case "truck": return new Truck();
+      default: throw new Error(`Unknown car type: ${type}`);
+    }
+  }
+}
+
+// Step 3: Use the Factory
+const sedan = CarFactory.createCar("sedan");
+const suv   = CarFactory.createCar("suv");
+const truck = CarFactory.createCar("truck");
+
+console.log(sedan.getInfo()); // Sedan: 4 doors, Fuel: Petrol
+console.log(suv.getInfo());   // SUV: 5 doors, Fuel: Diesel
+console.log(truck.getInfo()); // Truck: 2 doors, Fuel: Diesel</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-js dl"
+              onclick="dlCode('c-factory','carFactory.js')">⬇ carFactory.js</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="7">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(244,114,182,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="plug" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Printer Adapter — TechModern Solutions</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">TechModern Solutions · <span
+                  class="we">Exams: 10, 11, 12</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(244,114,182,.12);color:#f472b6">Adapter
+                Pattern</span><span class="tag"
+                style="background:rgba(244,114,182,.12);color:#f472b6">Structural</span><span class="tag"
+                style="background:rgba(244,114,182,.12);color:#f472b6">JS OOP</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Integrate a legacy printer with a modern interface for "TechModern Solutions" using the
+              Adapter Design Pattern.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li><b>LegacyPrinter:</b> Existing class with oldPrint(text) method</li>
+              <li><b>ModernPrinter:</b> Modern class with print(text) method</li>
+              <li><b>PrinterAdapter:</b> Wraps LegacyPrinter, exposes print() interface</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>printerAdapter.js</div>
+              <div class="fp">📄 printerAdapter.js</div><textarea id="c-adapter" class="raw-code" style="display:none">// Step 1: Legacy Printer (old, incompatible interface)
+class LegacyPrinter {
+  oldPrint(text) {
+    console.log(`[Legacy Printer] Printing: ${text}`);
+  }
+}
+
+// Step 2: Modern Printer (expected interface)
+class ModernPrinter {
+  print(text) {
+    console.log(`[Modern Printer] Printing: ${text}`);
+  }
+}
+
+// Step 3: Adapter — bridges LegacyPrinter to ModernPrinter interface
+class PrinterAdapter {
+  constructor(legacyPrinter) {
+    this.legacyPrinter = legacyPrinter;
+  }
+  print(text) {
+    // Translate new interface to old interface
+    this.legacyPrinter.oldPrint(text);
+  }
+}
+
+// Step 4: Usage — client uses same print() interface for both
+const modern  = new ModernPrinter();
+modern.print("Report 2025");
+// Output: [Modern Printer] Printing: Report 2025
+
+const legacy  = new LegacyPrinter();
+const adapter = new PrinterAdapter(legacy);
+adapter.print("Invoice #001");
+// Output: [Legacy Printer] Printing: Invoice #001</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">javascript</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-javascript">// Step 1: Legacy Printer (old, incompatible interface)
+class LegacyPrinter {
+  oldPrint(text) {
+    console.log(`[Legacy Printer] Printing: ${text}`);
+  }
+}
+
+// Step 2: Modern Printer (expected interface)
+class ModernPrinter {
+  print(text) {
+    console.log(`[Modern Printer] Printing: ${text}`);
+  }
+}
+
+// Step 3: Adapter — bridges LegacyPrinter to ModernPrinter interface
+class PrinterAdapter {
+  constructor(legacyPrinter) {
+    this.legacyPrinter = legacyPrinter;
+  }
+  print(text) {
+    // Translate new interface to old interface
+    this.legacyPrinter.oldPrint(text);
+  }
+}
+
+// Step 4: Usage — client uses same print() interface for both
+const modern  = new ModernPrinter();
+modern.print("Report 2025");
+// Output: [Modern Printer] Printing: Report 2025
+
+const legacy  = new LegacyPrinter();
+const adapter = new PrinterAdapter(legacy);
+adapter.print("Invoice #001");
+// Output: [Legacy Printer] Printing: Invoice #001</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-js dl"
+              onclick="dlCode('c-adapter','printerAdapter.js')">⬇ printerAdapter.js</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="unit-section" data-unit="8" id="unit24">
+      <div class="unit-header" style="--unit-color: var(--unit24)">
+        <div class="unit-num">8</div>
+        <div>
+          <div class="unit-title">Unit 8 &ndash; Software Testing</div>
+          <div class="unit-subtitle">Manual Unit Tests · Integration Tests · Jest Framework</div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="8">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(96,165,250,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="flask-conical" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Manual Unit Tests — CodeCraft Solutions</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">CodeCraft Solutions · <span
+                  class="we">Exams: 1, 5, 9</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(96,165,250,.12);color:#60a5fa">Manual
+                Testing</span><span class="tag"
+                style="background:rgba(96,165,250,.12);color:#60a5fa">Node.js</span><span class="tag"
+                style="background:rgba(96,165,250,.12);color:#60a5fa">PASS/FAIL</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build and run manual unit tests for "CodeCraft Solutions" using pure Node.js to verify math
+              operations without any testing framework.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">✅ Requirements</div>
+            <ul class="rl">
+              <li><b>mathOperations.js:</b> Functions: add, subtract, multiply, divide</li>
+              <li><b>test.js:</b> Custom test() function printing PASS/FAIL</li>
+              <li><b>Run:</b> node test.js</li>
+            </ul>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>mathOperations.js</div>
+              <div class="fp">📄 mathOperations.js</div><textarea id="c-math" class="raw-code" style="display:none">// Function: add two numbers
+function add(a, b) {
+  return a + b;
+}
+
+// Export the function
+module.exports = add;</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">javascript</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-javascript">function add(a, b)      { return a + b; }
+function subtract(a, b) { return a - b; }
+function multiply(a, b) { return a * b; }
+function divide(a, b) {
+  if (b === 0) throw new Error("Cannot divide by zero");
+  return a / b;
+}
+module.exports = { add, subtract, multiply, divide };</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>test.js — Manual Runner</div>
+              <div class="fp">📄 testMathOperations.js</div><textarea id="c-mtest" class="raw-code"
+                style="display:none">const add = require('./mathOperations');
+
+function test(description, actual, expected) {
+  if (actual === expected) {
+    console.log(`PASS: ${description}`);
+  } else {
+    console.log(`FAIL: ${description}`);
+    console.log(`  Expected: ${expected}, Got: ${actual}`);
+  }
+}
+
+console.log("=== CodeCraft Solutions - Unit Testing Demo ===");
+
+// Positive numbers
+test("Add 2 + 3",       add(2, 3),       5);
+// Zero
+test("Add 5 + 0",       add(5, 0),       5);
+// Negative numbers
+test("Add -2 + -3",     add(-2, -3),    -5);
+// Mixed numbers
+test("Add -2 + 5",      add(-2, 5),      3);
+// Large numbers
+test("Add 1000 + 2000", add(1000, 2000), 3000);
+// Decimal numbers
+test("Add 2.5 + 1.5",   add(2.5, 1.5),  4);
+
+// Run: node testMathOperations.js</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">javascript</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-javascript">const { add, subtract, multiply, divide } = require("./mathOperations");
+
+function test(description, actual, expected) {
+  if (actual === expected) {
+    console.log("PASS: " + description);
+  } else {
+    console.log("FAIL: " + description);
+    console.log("  Expected: " + expected + " | Got: " + actual);
+  }
+}
+
+console.log("=== CodeCraft Solutions - Unit Tests ===");
+test("add(2, 3) = 5",        add(2, 3),        5);
+test("add(0, 0) = 0",        add(0, 0),        0);
+test("subtract(10, 4) = 6",  subtract(10, 4),  6);
+test("multiply(3, 4) = 12",  multiply(3, 4),  12);
+test("multiply(5, 0) = 0",   multiply(5, 0),   0);
+test("divide(15, 3) = 5",    divide(15, 3),    5);
+// Run: node test.js</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-js dl"
+              onclick="dlCode('c-math','mathOperations.js')">⬇ mathOperations.js</button><button class="dl-js dl"
+              onclick="dlCode('c-mtest','testMathOperations.js')">⬇ test.js</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="8">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(96,165,250,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="landmark" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Calculator Integration Tests — FinTech Solutions</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">FinTech Solutions · <span
+                  class="we">Exams: 3, 7, 11</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(96,165,250,.12);color:#60a5fa">Integration
+                Tests</span><span class="tag" style="background:rgba(96,165,250,.12);color:#60a5fa">Chained Ops</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Build manual integration tests for "FinTech Solutions" using a chained Calculator class to
+              verify multiple operations work together correctly.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>calculator.js</div>
+              <div class="fp">📄 calculator.js</div><textarea id="c-calcclass" class="raw-code" style="display:none">class Calculator {
+  constructor() { this.result = 0; }
+  add(n)      { this.result += n; return this; }
+  subtract(n) { this.result -= n; return this; }
+  multiply(n) { this.result *= n; return this; }
+  divide(n)   { this.result /= n; return this; }
+  getResult() { return this.result; }
+  reset()     { this.result = 0; return this; }
+}
+module.exports = Calculator;</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">javascript</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-javascript">class Calculator {
+  constructor() { this.result = 0; }
+  add(n)      { this.result += n; return this; }
+  subtract(n) { this.result -= n; return this; }
+  multiply(n) { this.result *= n; return this; }
+  divide(n)   { this.result /= n; return this; }
+  getResult() { return this.result; }
+  reset()     { this.result = 0; return this; }
+}
+module.exports = Calculator;</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>integrationTest.js</div>
+              <div class="fp">📄 integrationTest.js</div><textarea id="c-inttest" class="raw-code" style="display:none">const Calculator = require("./calculator");
+
+function test(description, actual, expected) {
+  if (actual === expected) console.log("PASS: " + description);
+  else console.log("FAIL: " + description + " | Expected: " + expected + " Got: " + actual);
+}
+
+console.log("=== FinTech Solutions - Integration Tests ===");
+let calc = new Calculator();
+
+calc.add(10).subtract(3);
+test("add(10) then subtract(3) = 7", calc.getResult(), 7);
+
+calc.reset().add(6).multiply(4).divide(3);
+test("add(6), multiply(4), divide(3) = 8", calc.getResult(), 8);
+
+calc.reset().add(10).multiply(2).subtract(5);
+test("add(10), multiply(2), subtract(5) = 15", calc.getResult(), 15);
+
+calc.reset();
+test("reset() returns 0", calc.getResult(), 0);
+// Run: node integrationTest.js</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">javascript</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-javascript">const Calculator = require("./calculator");
+
+function test(description, actual, expected) {
+  if (actual === expected) console.log("PASS: " + description);
+  else console.log("FAIL: " + description + " | Expected: " + expected + " Got: " + actual);
+}
+
+console.log("=== FinTech Solutions - Integration Tests ===");
+let calc = new Calculator();
+
+calc.add(10).subtract(3);
+test("add(10) then subtract(3) = 7", calc.getResult(), 7);
+
+calc.reset().add(6).multiply(4).divide(3);
+test("add(6), multiply(4), divide(3) = 8", calc.getResult(), 8);
+
+calc.reset().add(10).multiply(2).subtract(5);
+test("add(10), multiply(2), subtract(5) = 15", calc.getResult(), 15);
+
+calc.reset();
+test("reset() returns 0", calc.getResult(), 0);
+// Run: node integrationTest.js</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-js dl"
+              onclick="dlCode('c-calcclass','calculator.js')">⬇ calculator.js</button><button class="dl-js dl"
+              onclick="dlCode('c-inttest','integrationTest.js')">⬇ integrationTest.js</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="8">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(96,165,250,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="zap" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Jest Unit Tests — TechQuality Assurance</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">TechQuality Assurance · <span
+                  class="we">Exams: 2, 6, 10</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(96,165,250,.12);color:#60a5fa">Jest</span><span
+                class="tag" style="background:rgba(96,165,250,.12);color:#60a5fa">describe/test</span><span class="tag"
+                style="background:rgba(96,165,250,.12);color:#60a5fa">expect</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Write professional unit tests for "TechQuality Assurance" using Jest with describe, test, and
+              expect matchers.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>Setup Jest</div>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">bash</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-bash">npm init -y
+npm install --save-dev jest
+# package.json: "scripts": { "test": "jest" }</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>add.js — Functions</div>
+              <div class="fp">📄 add.js</div><textarea id="c-addfn" class="raw-code" style="display:none">function add(a, b) {
+  return a + b;
+}
+
+module.exports = add;</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">javascript</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-javascript">function add(a, b)      { return a + b; }
+function subtract(a, b) { return a - b; }
+function multiply(a, b) { return a * b; }
+function divide(a, b)   { return b !== 0 ? a / b : null; }
+module.exports = { add, subtract, multiply, divide };</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">3</span>add.test.js — Jest Suite</div>
+              <div class="fp">📄 add.test.js</div><textarea id="c-jtest" class="raw-code" style="display:none">const add = require('./add');
+
+test('adds 2 + 3 = 5', () => {
+  expect(add(2, 3)).toBe(5);
+});
+test('adds negative numbers', () => {
+  expect(add(-2, -3)).toBe(-5);
+});
+test('adds positive and negative', () => {
+  expect(add(5, -3)).toBe(2);
+});
+test('adds zero', () => {
+  expect(add(0, 5)).toBe(5);
+});
+
+// Run: npm test</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">javascript</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-javascript">const { add, subtract, multiply, divide } = require("./add");
+
+describe("Math Operations - TechQuality Assurance", () =&gt; {
+  test("add(2, 3) should return 5",      () =&gt; expect(add(2, 3)).toBe(5));
+  test("add(0, 0) should return 0",      () =&gt; expect(add(0, 0)).toBe(0));
+  test("subtract(10, 4) should return 6",() =&gt; expect(subtract(10, 4)).toBe(6));
+  test("multiply(3, 4) should return 12",() =&gt; expect(multiply(3, 4)).toBe(12));
+  test("multiply(5, 0) should return 0", () =&gt; expect(multiply(5, 0)).toBe(0));
+  test("divide(15, 3) should return 5",  () =&gt; expect(divide(15, 3)).toBe(5));
+  test("divide(10, 0) returns null",     () =&gt; expect(divide(10, 0)).toBeNull());
+});
+// Run: npm test</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-js dl"
+              onclick="dlCode('c-addfn','add.js')">⬇ add.js</button><button class="dl-js dl"
+              onclick="dlCode('c-jtest','add.test.js')">⬇ add.test.js</button></div>
+        </div>
+      </div>
+      <div class="accordion" data-unit="8">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <span class="acc-badge"
+              style="background:rgba(96,165,250,.12); padding: 4px 8px; border-radius: 8px; display:inline-flex; align-items:center; justify-content:center;"><i
+                data-lucide="building" style="width:18px;height:18px;color:var(--purple);"></i></span>
+            <div>
+              <div class="acc-title">Jest Integration Tests — Enterprise Finance Corp</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">Enterprise Finance Corp · <span
+                  class="we">Exams: 4, 8, 12</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="tags"><span class="tag" style="background:rgba(96,165,250,.12);color:#60a5fa">Jest</span><span
+                class="tag" style="background:rgba(96,165,250,.12);color:#60a5fa">beforeEach</span><span class="tag"
+                style="background:rgba(96,165,250,.12);color:#60a5fa">Integration</span></div>
+
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="blk">
+            <div class="bt2">📋 Scenario</div>
+            <p class='sc'>Write Jest integration tests for "Enterprise Finance Corp" calculator with beforeEach for
+              clean state between tests.</p>
+          </div>
+          <div class="blk">
+            <div class="bt2">💻 Solution</div>
+            <div class="step">
+              <div class="st"><span class="sn">1</span>calculator.js — Same Class</div><textarea id="c-jcalc"
+                class="raw-code" style="display:none">class Calculator {
+  constructor() { this.result = 0; }
+  add(n)      { this.result += n; return this; }
+  subtract(n) { this.result -= n; return this; }
+  multiply(n) { this.result *= n; return this; }
+  divide(n)   { this.result /= n; return this; }
+  getResult() { return this.result; }
+  reset()     { this.result = 0; return this; }
+}
+module.exports = Calculator;</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">javascript</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-javascript">class Calculator {
+  constructor() { this.result = 0; }
+  add(n)      { this.result += n; return this; }
+  subtract(n) { this.result -= n; return this; }
+  multiply(n) { this.result *= n; return this; }
+  divide(n)   { this.result /= n; return this; }
+  getResult() { return this.result; }
+  reset()     { this.result = 0; return this; }
+}
+module.exports = Calculator;</code></pre>
+              </div>
+            </div>
+            <div class="step">
+              <div class="st"><span class="sn">2</span>calculator.test.js — Jest Integration</div>
+              <div class="fp">📄 calculator.test.js</div><textarea id="c-jctest" class="raw-code" style="display:none">const Calculator = require("./calculator");
+
+describe("Calculator Integration Tests - Enterprise Finance Corp", () => {
+  let calc;
+  beforeEach(() => { calc = new Calculator(); });
+
+  test("add(10) then subtract(3) = 7", () => {
+    calc.add(10).subtract(3);
+    expect(calc.getResult()).toBe(7);
+  });
+  test("add(5), multiply(4), divide(2) = 10", () => {
+    calc.add(5).multiply(4).divide(2);
+    expect(calc.getResult()).toBe(10);
+  });
+  test("add(10), multiply(2), subtract(5) = 15", () => {
+    calc.add(10).multiply(2).subtract(5);
+    expect(calc.getResult()).toBe(15);
+  });
+  test("reset() returns 0", () => {
+    calc.add(100).reset();
+    expect(calc.getResult()).toBe(0);
+  });
+  test("add(5)+add(3)+add(2) = 10", () => {
+    calc.add(5).add(3).add(2);
+    expect(calc.getResult()).toBe(10);
+  });
+});
+// Run: npm test</textarea>
+              <div class="cb-wrap">
+                <div class="cb-head"><span class="cb-lang">javascript</span><button class="cb"
+                    onclick="cp(this)">Copy</button></div>
+                <pre><code class="language-javascript">const Calculator = require("./calculator");
+
+describe("Calculator Integration Tests - Enterprise Finance Corp", () =&gt; {
+  let calc;
+  beforeEach(() =&gt; { calc = new Calculator(); });
+
+  test("add(10) then subtract(3) = 7", () =&gt; {
+    calc.add(10).subtract(3);
+    expect(calc.getResult()).toBe(7);
+  });
+  test("add(5), multiply(4), divide(2) = 10", () =&gt; {
+    calc.add(5).multiply(4).divide(2);
+    expect(calc.getResult()).toBe(10);
+  });
+  test("add(10), multiply(2), subtract(5) = 15", () =&gt; {
+    calc.add(10).multiply(2).subtract(5);
+    expect(calc.getResult()).toBe(15);
+  });
+  test("reset() returns 0", () =&gt; {
+    calc.add(100).reset();
+    expect(calc.getResult()).toBe(0);
+  });
+  test("add(5)+add(3)+add(2) = 10", () =&gt; {
+    calc.add(5).add(3).add(2);
+    expect(calc.getResult()).toBe(10);
+  });
+});
+// Run: npm test</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="dl-bar"><span class="dl-lbl">⬇ Download:</span><button class="dl-js dl"
+              onclick="dlCode('c-jcalc','calculator.js')">⬇ calculator.js</button><button class="dl-js dl"
+              onclick="dlCode('c-jctest','calculator.test.js')">⬇ calculator.test.js</button></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <button id="backToTop" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+    title="Back to Top"><i data-lucide="chevron-up"></i></button>
+  </div>
+  <script src="assets/js/script.js"></script>
+
+</body>
+
+</html>

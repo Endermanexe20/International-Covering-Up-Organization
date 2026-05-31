@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Physics – ام عبير للمذلكره على السرير | Grade 3 – Units, Terms, Comparisons, Rules, Essays and custom Exam Designer.">
+    <title>Physics | ام عبير للمذلكره على السرير | Grade 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+<header>
+  <div class="header-inner">
+    <div class="header-left">
+      <a href="index.html" class="portal-link" title="Back to Portal">
+        <i data-lucide="layout-grid"></i>
+      </a>
+      <div class="logo"><i data-lucide="zap" class="icon-zap"></i> Physics <span>&mdash; ام عبير للمذاكره على السرير | Grade 3</span></div>
+</div>
+    <div class="header-right">
+      <div class="search-wrap">
+        <i data-lucide="search" class="icon-search"></i>
+        <input type="text" id="searchInput" placeholder="Search any term..." oninput="handleSearch(this.value)">
+        <div class="search-actions">
+          <button id="searchFilterBtn" class="search-filter-btn" onclick="toggleSearchFilter()" title="Filter by Type">
+            <i data-lucide="sliders-horizontal"></i>
+          </button>
+          <i data-lucide="x" id="clearSearchBtn" class="clear-icon" onclick="clearSearch()" style="display:none;" title="Clear search"></i>
+        </div>
+        
+        <div id="searchFilterDropdown" class="search-filter-dropdown">
+          <div class="filter-header">
+            <span>Filter by Type</span>
+          </div>
+          <div class="filter-options">
+            <label class="filter-option">
+              <input type="checkbox" value="all" checked onchange="handleFilterChange('all')">
+              <span>All Types</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" value="terms" checked onchange="handleFilterChange('terms')">
+              <span>Scientific Terms</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" value="compare" checked onchange="handleFilterChange('compare')">
+              <span>Comparisons</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" value="essay" checked onchange="handleFilterChange('essay')">
+              <span>Essay Questions</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" value="units" checked onchange="handleFilterChange('units')">
+              <span>Physical Units</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" value="rules" checked onchange="handleFilterChange('rules')">
+              <span>Formulas & Rules</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" value="mcq" checked onchange="handleFilterChange('mcq')">
+              <span>Multiple Choice</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" value="tf" checked onchange="handleFilterChange('tf')">
+              <span>True / False</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" value="complete" checked onchange="handleFilterChange('complete')">
+              <span>Fill in Blanks</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" value="match" checked onchange="handleFilterChange('match')">
+              <span>Column Matching</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" value="debug" checked onchange="handleFilterChange('debug')">
+              <span>Code Debugging</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    
+      <button id="themeToggle" class="theme-btn" onclick="toggleTheme()" title="Toggle Theme"><i data-lucide="contrast" class="theme-icon"></i><span>System</span></button>
+    </div>
+  </div>
+</header>
+<div class="tabs">
+  <button class="tab-btn active" data-unit="0" onclick="showUnit(0, this)"><i data-lucide="book"></i> All</button>
+  <button class="tab-btn" data-unit="1" onclick="showUnit(1, this)"><i data-lucide="battery"></i> Unit 1 &ndash; Magnetism</button>
+  <button class="tab-btn" data-unit="2" onclick="showUnit(2, this)"><i data-lucide="zap"></i> Unit 2 &ndash; EM Induction</button>
+  <button class="tab-btn" data-unit="3" onclick="showUnit(3, this)"><i data-lucide="star"></i> Unit 3 &ndash; Modern Physics</button>
+  <button class="tab-btn" data-unit="4" onclick="showUnit(4, this)"><i data-lucide="cpu"></i> Unit 4 &ndash; Electronics</button>
+  <button class="tab-btn exam-tab-btn" onclick="toggleExamDesigner(this)"><i data-lucide="clipboard-list"></i> Exam Designer</button>
+</div>
+<div class="exam-designer" id="examDesigner">
+  <div class="exam-designer-body">
+    <div class="exam-group">
+      <div class="exam-group-title">Choose Units</div>
+      <div class="exam-checkbox-list">
+        <label class="exam-checkbox-label"><input type="checkbox" class="exam-unit-checkbox" value="1" checked> Unit 1 — Kinematics</label>
+        <label class="exam-checkbox-label"><input type="checkbox" class="exam-unit-checkbox" value="2" checked> Unit 2 — Dynamics</label>
+        <label class="exam-checkbox-label"><input type="checkbox" class="exam-unit-checkbox" value="3" checked> Unit 3 — Modern Physics</label>
+        <label class="exam-checkbox-label"><input type="checkbox" class="exam-unit-checkbox" value="4" checked> Unit 4 — Electronics</label>
+      </div>
+    </div>
+    <div class="exam-group">
+      <div class="exam-group-title">Question Types</div>
+      <div class="exam-checkbox-list">
+        <label class="exam-checkbox-label"><input type="checkbox" class="exam-type-checkbox" value="terms"    checked><span>Scientific Terms</span></label>
+        <label class="exam-checkbox-label"><input type="checkbox" class="exam-type-checkbox" value="compare"  checked><span>Comparisons</span></label>
+        <label class="exam-checkbox-label"><input type="checkbox" class="exam-type-checkbox" value="units"    checked><span>Physical Quantities</span></label>
+        <label class="exam-checkbox-label"><input type="checkbox" class="exam-type-checkbox" value="rules"    checked><span>Mathematical Formulas</span></label>
+        <label class="exam-checkbox-label"><input type="checkbox" class="exam-type-checkbox" value="essay"    checked><span>Essay Questions</span></label>
+        <label class="exam-checkbox-label"><input type="checkbox" class="exam-type-checkbox" value="mcq"      checked><span>Multiple Choice</span></label>
+        <label class="exam-checkbox-label"><input type="checkbox" class="exam-type-checkbox" value="tf"       checked><span>True or False</span></label>
+        <label class="exam-checkbox-label"><input type="checkbox" class="exam-type-checkbox" value="complete" checked><span>Fill in the Blanks</span></label>
+      </div>
+    </div>
+    <div class="exam-group">
+      <div class="exam-group-title">Questions per Type (Max 100)</div>
+      <div style="display:flex;align-items:center;gap:12px;width:100%;margin-top:8px;">
+        <input type="range" id="examQuestionLimit" min="1" max="100" value="10" step="1"
+          style="flex:1;accent-color:#a855f7;"
+          oninput="document.getElementById('limitValue').textContent=this.value">
+        <span id="limitValue" style="font-weight:700;font-size:1.1rem;min-width:28px;text-align:right;">10</span>
+      </div>
+    </div>
+    <div class="exam-group">
+      <div class="exam-group-title">Options</div>
+      <div class="exam-checkbox-list">
+        <label class="exam-checkbox-label"><input type="checkbox" id="examRandomize" checked><span>Randomize Questions</span></label>
+      </div>
+    </div>
+    <button class="exam-generate-btn" onclick="generateExam()">Generate Exam</button>
+  </div>
+</div>
+
+<main>
+
+<div class="nm" id="nm">No results match your search.</div>
+<div class="unit-section visible" data-unit="1" id="unit1">
+  <div class="unit-header" style="--unit-color: var(--unit1)">
+    <div class="unit-num">1</div>
+    <div>
+      <div class="unit-title">Magnetic Effect of Electric Current</div>
+      <div class="unit-subtitle">Electromagnetism · Magnetic Flux · Torque · Dipole Moment</div>
+    </div>
+  </div>
+  <div class="accordion open">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-terms">Terms</span>
+        <span class="acc-title">Scientific Terms</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="acc-count">14 terms</span>
+        
+      </div>
+    </div>
+    <div class="acc-body">
+      <div class="table-wrapper">
+        <table class="terms-table">
+          <thead><tr><th>#</th><th>Definition / Description</th><th>Term / Answer</th></tr></thead>
+          <tbody>
+            <tr><td class="row-num">1</td><td class="row-q">Magnetic field is produced around a conductor when an electric current passing through it.</td><td class="row-a">Electromagnetism</td></tr>
+            <tr><td class="row-num">2</td><td class="row-q">The area around a magnet (or a current–carrying conductor) where magnetic forces can act.</td><td class="row-a">Magnetic Field</td></tr>
+            <tr><td class="row-num">3</td><td class="row-q">It is the total number of magnetic flux lines passing through a surface.</td><td class="row-a">Magnetic Flux</td></tr>
+            <tr><td class="row-num">4</td><td class="row-q">It is the total number of magnetic flux lines passing normally through a unit area around the point.</td><td class="row-a">Magnetic Flux Density</td></tr>
+            <tr><td class="row-num">5</td><td class="row-q">It is the ability of medium to penetrate the magnetic flux lines.</td><td class="row-a">Magnetic Permeability</td></tr>
+            <tr><td class="row-num">6</td><td class="row-q">If the thumb points in the direction of the current, the rest of the fingers around the wire will indicate the direction of the magnetic field.</td><td class="row-a">Ampere Right Hand Rule</td></tr>
+            <tr><td class="row-num">7</td><td class="row-q">If the direction of rotation of a right-handed screw points in the direction of the current, the direction of motion gives the direction of the magnetic field in a circular coil.</td><td class="row-a">Right Cork Screw Rule / Maxwell's Screw Rule</td></tr>
+            <tr><td class="row-num">8</td><td class="row-q">The side at which the current is clockwise = South Pole; the side with anticlockwise current = North Pole.</td><td class="row-a">Clockwise Rule (Polarity of Coil)</td></tr>
+            <tr><td class="row-num">9</td><td class="row-q">It is the point at which the total magnetic flux density vanishes.</td><td class="row-a">Neutral Point</td></tr>
+            <tr><td class="row-num">10</td><td class="row-q">It is used to determine the direction of the magnetic force in the wire.</td><td class="row-a">Fleming's Left Hand Rule</td></tr>
+            <tr><td class="row-num">11</td><td class="row-q">It is the magnetic force exerted on a wire of 1 m length carrying 1 A placed perpendicularly to the field.</td><td class="row-a">Magnetic Flux Density</td></tr>
+            <tr><td class="row-num">12</td><td class="row-q">The magnetic flux density that exerts a force of 1 N on a 1 m wire carrying 1 A placed perpendicularly to the field.</td><td class="row-a">Tesla</td></tr>
+            <tr><td class="row-num">13</td><td class="row-q">The magnetic flux density when total flux lines passing normally through unit area = 1 Wb.</td><td class="row-a">Tesla</td></tr>
+            <tr><td class="row-num">14</td><td class="row-q">The magnetic torque acting on a coil carrying current placed parallel to a uniform magnetic field of flux density 1 Tesla.</td><td class="row-a">Magnetic Dipole Moment</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-compare">Compare</span>
+        <span class="acc-title">Comparisons</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="acc-count">1 table</span>
+        
+      </div>
+    </div>
+    <div class="acc-body">
+      <div class="compare-section">
+        <div class="compare-card">
+          <div class="compare-title">Straight Wire vs Circular Coil vs Solenoid</div>
+          <div class="table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Point of Comparison</th><th>Straight Wire</th><th>Circular Coil</th><th>Solenoid</th></tr></thead>
+              <tbody>
+                <tr><td>Shape of Magnetic Field</td><td>Concentric Circles</td><td>Straight Parallel lines at Center</td><td>Straight Parallel lines at Center</td></tr>
+                <tr><td>Rule for Direction</td><td>Ampere Right Hand Rule</td><td>Right Cork Screw / Maxwell's / Clockwise Rule</td><td>Clockwise Rule / Ampere Right Hand Rule</td></tr>
+                <tr><td>Factors affecting B</td><td>I (↑), d (↓)</td><td>I (↑), N (↑), r (↓)</td><td>I (↑), N (↑), L (↓)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-units">Units</span>
+        <span class="acc-title">Physical Quantities & Units</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        
+      </div>
+    </div>
+    <div class="acc-body">
+      <div class="simple-grid">
+        <div class="unit-pill"><span class="unit-label">Magnetic Flux (Φ)</span><span class="unit-val">Wb (Weber)</span></div>
+        <div class="unit-pill"><span class="unit-label">Magnetic Flux Density (B)</span><span class="unit-val">T = Wb/m²</span></div>
+        <div class="unit-pill"><span class="unit-label">Area (A)</span><span class="unit-val">m²</span></div>
+        <div class="unit-pill"><span class="unit-label">Current Intensity (I)</span><span class="unit-val">A (Ampere)</span></div>
+        <div class="unit-pill"><span class="unit-label">Distance (d)</span><span class="unit-val">m</span></div>
+        <div class="unit-pill"><span class="unit-label">Magnetic Permeability (μ)</span><span class="unit-val">T·m/A = Wb/A·m</span></div>
+        <div class="unit-pill"><span class="unit-label">Force (F)</span><span class="unit-val">N (Newton)</span></div>
+        <div class="unit-pill"><span class="unit-label">Torque (τ)</span><span class="unit-val">N·m</span></div>
+        <div class="unit-pill"><span class="unit-label">Magnetic Dipole Moment</span><span class="unit-val">A·m² = N·m/T</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-rules">Rules</span>
+        <span class="acc-title">Mathematical Formulas</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        
+      </div>
+    </div>
+    <div class="acc-body">
+      <div class="simple-grid">
+        <div class="rule-card"><div class="rule-name">Magnetic Flux (Φ)</div><div class="rule-formula">Φ = B · A · cos(θ)   [Wb]</div></div>
+        <div class="rule-card"><div class="rule-name">Magnetic Force on Wire (F)</div><div class="rule-formula">F = B · I · L · sin(θ)   [N]</div></div>
+        <div class="rule-card"><div class="rule-name">Magnetic Torque on Coil (τ)</div><div class="rule-formula">τ = B · I · A · N · sin(θ) = |M⃗| · B · sin(θ)   [N·m]</div></div>
+        <div class="rule-card"><div class="rule-name">Magnetic Dipole Moment (|M⃗|)</div><div class="rule-formula">|M⃗| = N · I · A   [A·m²]</div></div>
+        <div class="rule-card"><div class="rule-name">B for Straight Wire</div><div class="rule-formula">B = (μ · I) / (2π · d)</div></div>
+        <div class="rule-card"><div class="rule-name">B for Circular Coil</div><div class="rule-formula">B = (μ · N · I) / (2r)</div></div>
+        <div class="rule-card"><div class="rule-name">B for Solenoid</div><div class="rule-formula">B = (μ · N · I) / L</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-essay">Essay</span>
+        <span class="acc-title">Essay Questions</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="acc-count">10 questions</span>
+        
+      </div>
+    </div>
+    <div class="acc-body">
+      <div class="essay-list">
+        <div class="essay-card">
+          <div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q1</span><span class="essay-question">Mention the origin of the magnetic field (magnetism).</span><span class="essay-toggle">▾</span></div>
+          <div class="essay-ans"><ol><li>The motion of the electrons in an orbit around the nucleus.</li><li>The spin of the electrons around its axis.</li></ol></div>
+        </div>
+        <div class="essay-card">
+          <div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q2</span><span class="essay-question">Mention the properties of the magnetic field.</span><span class="essay-toggle">▾</span></div>
+          <div class="essay-ans"><ol><li>Magnetic field lines never cross each other.</li><li>Magnetic field lines always make closed loops.</li><li>They always emerge from the North Pole and terminate at the South Pole.</li><li>The direction of the magnetic field is the direction in which the north pole of a compass needle moves inside it.</li></ol></div>
+        </div>
+        <div class="essay-card">
+          <div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q3</span><span class="essay-question">Factors affecting magnetic flux density for a straight wire carrying current.</span><span class="essay-toggle">▾</span></div>
+          <div class="essay-ans"><ul><li>I: Current intensity (directly ↑)</li><li>d: Distance (inversely ↑ → B ↓)</li></ul></div>
+        </div>
+        <div class="essay-card">
+          <div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q4</span><span class="essay-question">Factors affecting magnetic flux density for a circular coil.</span><span class="essay-toggle">▾</span></div>
+          <div class="essay-ans"><ul><li>I: Current intensity (directly)</li><li>N: Number of turns (directly)</li><li>r: Radius of the coil (inversely)</li></ul></div>
+        </div>
+        <div class="essay-card">
+          <div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q5</span><span class="essay-question">Factors affecting magnetic flux density for a solenoid.</span><span class="essay-toggle">▾</span></div>
+          <div class="essay-ans"><ul><li>I: Current intensity (directly)</li><li>N: Number of turns (directly)</li><li>L: Length of the coil (inversely)</li></ul></div>
+        </div>
+        <div class="essay-card">
+          <div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q6</span><span class="essay-question">Factors affecting magnetic force on a wire carrying current.</span><span class="essay-toggle">▾</span></div>
+          <div class="essay-ans"><ul><li>B: Magnetic flux density (directly)</li><li>I: Current intensity (directly)</li><li>L: Length of wire (directly)</li></ul></div>
+        </div>
+        <div class="essay-card">
+          <div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q7</span><span class="essay-question">Factors affecting magnetic torque on a coil.</span><span class="essay-toggle">▾</span></div>
+          <div class="essay-ans"><ul><li>B: Magnetic flux density (directly)</li><li>I: Current intensity (directly)</li><li>A: Area of coil (directly)</li><li>N: Number of turns (directly)</li></ul></div>
+        </div>
+        <div class="essay-card">
+          <div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q8</span><span class="essay-question">Factors affecting magnetic dipole moment.</span><span class="essay-toggle">▾</span></div>
+          <div class="essay-ans"><ul><li>I: Current intensity (directly)</li><li>A: Area of coil (directly)</li><li>N: Number of turns (directly)</li></ul></div>
+        </div>
+        <div class="essay-card">
+          <div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q9</span><span class="essay-question">Mention applications of magnetic torque.</span><span class="essay-toggle">▾</span></div>
+          <div class="essay-ans"><ul><li>Electric Motor</li><li>Galvanometer</li></ul></div>
+        </div>
+        <div class="essay-card">
+          <div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q10</span><span class="essay-question">Mention the scientific base of Electric Motor or Galvanometer.</span><span class="essay-toggle">▾</span></div>
+          <div class="essay-ans">Magnetic torque.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="unit-section" data-unit="2" id="unit2">
+  <div class="unit-header" style="--unit-color: var(--unit2)">
+    <div class="unit-num">2</div>
+    <div>
+      <div class="unit-title">Electromagnetic Induction</div>
+      <div class="unit-subtitle">Faraday · Lenz · Self & Mutual Induction · Transformer · Eddy Currents</div>
+    </div>
+  </div>
+  <div class="accordion open">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-terms">Terms</span>
+        <span class="acc-title">Scientific Terms</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="acc-count">11 terms</span>
+        
+      </div>
+    </div>
+    <div class="acc-body">
+      <div class="table-wrapper">
+        <table class="terms-table">
+          <thead><tr><th>#</th><th>Definition / Description</th><th>Term / Answer</th></tr></thead>
+          <tbody>
+            <tr><td class="row-num">01</td><td class="row-q">A phenomenon in which an induced emf and current are generated in a conductor by a changing magnetic field.</td><td class="row-a">Electromagnetic Induction</td></tr>
+            <tr><td class="row-num">02</td><td class="row-q">An emf (current) induced in a conductor while it is moving (cutting) across a magnetic field.</td><td class="row-a">Induced emf</td></tr>
+            <tr><td class="row-num">03</td><td class="row-q">The magnitude of the induced emf is proportional to the rate by which the conductor cuts the flux lines and to the number of turns N.</td><td class="row-a">Faraday's Law</td></tr>
+            <tr><td class="row-num">04</td><td class="row-q">The induced current must be in a direction such as to oppose the change producing it.</td><td class="row-a">Lenz's Law</td></tr>
+            <tr><td class="row-num">05</td><td class="row-q">Electromagnetic effect between two coils: induced emf in secondary due to current variation in primary, opposing the change.</td><td class="row-a">Mutual Induction</td></tr>
+            <tr><td class="row-num">06</td><td class="row-q">The phenomenon of inducing emf in a coil due to change in current in the same coil.</td><td class="row-a">Self-Induction</td></tr>
+            <tr><td class="row-num">07</td><td class="row-q">It is used to determine the direction of induced current in a wire.</td><td class="row-a">Fleming's Right Hand Rule</td></tr>
+            <tr><td class="row-num">08</td><td class="row-q">A device used for converting mechanical energy into electrical energy.</td><td class="row-a">AC Generator (Dynamo)</td></tr>
+            <tr><td class="row-num">09</td><td class="row-q">An electrical device used for converting low AC voltage into high AC voltage and vice versa.</td><td class="row-a">Transformer</td></tr>
+            <tr><td class="row-num">10</td><td class="row-q">Induced currents that circulate in closed paths in a solid conductor due to change in magnetic flux, associated with heating effect.</td><td class="row-a">Eddy Currents</td></tr>
+            <tr><td class="row-num">11</td><td class="row-q">The ratio of output electric power to input electric power.</td><td class="row-a">Efficiency of Transformer</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-compare">Compare</span>
+        <span class="acc-title">Comparisons</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="acc-count">2 tables</span>
+        
+      </div>
+    </div>
+    <div class="acc-body">
+      <div class="compare-section">
+        <div class="compare-card">
+          <div class="compare-title">Back Induced emf vs Forward Induced emf</div>
+          <div class="table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Method</th><th>Back Induced emf</th><th>Forward Induced emf</th></tr></thead>
+              <tbody>
+                <tr><td>Movement</td><td>Moving primary coil near to / inside secondary</td><td>Moving primary coil away from secondary</td></tr>
+                <tr><td>Using Rheostat</td><td>Increasing current in primary</td><td>Decreasing current in primary</td></tr>
+                <tr><td>Using Switch</td><td>Switching ON the current in primary</td><td>Switching OFF the current in primary</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="compare-card">
+          <div class="compare-title">DC Current vs AC Current</div>
+          <div class="table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Point of Comparison</th><th>DC Current</th><th>AC Current</th></tr></thead>
+              <tbody>
+                <tr><td>Direction</td><td>Flows in one direction only</td><td>Flows in two opposite directions</td></tr>
+                <tr><td>Source</td><td>Battery or DC dynamo</td><td>AC dynamo</td></tr>
+                <tr><td>Value</td><td>Constant intensity</td><td>Changes periodically</td></tr>
+                <tr><td>Frequency</td><td>Zero</td><td>Has frequency</td></tr>
+                <tr><td>Magnetic field produced</td><td>Constant (steady)</td><td>Variable</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-units">Units</span>
+        <span class="acc-title">Physical Quantities & Units</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px"></div>
+    </div>
+    <div class="acc-body">
+      <div class="simple-grid">
+        <div class="unit-pill"><span class="unit-label">EMF (ε)</span><span class="unit-val">Volt = Wb/s</span></div>
+        <div class="unit-pill"><span class="unit-label">Mutual Inductance (M)</span><span class="unit-val">Henry (H) = V·s/A</span></div>
+        <div class="unit-pill"><span class="unit-label">Self-Inductance (L)</span><span class="unit-val">Henry (H) = V·s/A</span></div>
+        <div class="unit-pill"><span class="unit-label">Rate of Change of Current (ΔI/Δt)</span><span class="unit-val">A/s</span></div>
+        <div class="unit-pill"><span class="unit-label">Frequency (f)</span><span class="unit-val">Hertz (Hz) = s⁻¹</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-rules">Rules</span>
+        <span class="acc-title">Mathematical Formulas</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px"></div>
+    </div>
+    <div class="acc-body">
+      <div class="simple-grid">
+        <div class="rule-card"><div class="rule-name">Faraday's Law</div><div class="rule-formula">ε = -N · (ΔΦ/Δt)</div></div>
+        <div class="rule-card"><div class="rule-name">Mutual Induction</div><div class="rule-formula">ε₂ = -M · (ΔI₁/Δt)</div></div>
+        <div class="rule-card"><div class="rule-name">Self-Induction</div><div class="rule-formula">ε = -L · (ΔI/Δt)</div></div>
+        <div class="rule-card"><div class="rule-name">Induced emf in Straight Wire</div><div class="rule-formula">ε = B · L · v</div></div>
+        <div class="rule-card"><div class="rule-name">Induced emf in Dynamo</div><div class="rule-formula">ε = N · B · A · ω · sin(ωt) = ε₀ · sin(ωt)</div></div>
+        <div class="rule-card"><div class="rule-name">Ideal Transformer</div><div class="rule-formula">V₁/V₂ = N₁/N₂ = I₂/I₁</div></div>
+        <div class="rule-card"><div class="rule-name">Transformer Efficiency</div><div class="rule-formula">η = (P_out / P_in) × 100%
+  = (V₂ · I₂) / (V₁ · I₁) × 100%</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-essay">Essay</span>
+        <span class="acc-title">Essay Questions</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="acc-count">15 questions</span>
+        
+      </div>
+    </div>
+    <div class="acc-body">
+      <div class="essay-list">
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q1</span><span class="essay-question">Factors affecting induced emf on a coil.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ul><li>ΔΦ/Δt: rate of change of magnetic flux (directly)</li><li>N: number of turns (directly)</li><li>Speed of the magnet (directly)</li></ul></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q2</span><span class="essay-question">Factors affecting the direction of induced current in a conductor.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ul><li>The direction of the motion.</li><li>The direction of the magnetic field.</li></ul></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q3</span><span class="essay-question">Factors affecting coefficient of mutual inductance between two coils.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ul><li>The presence of an iron core inside the coil.</li><li>The volume of the coil.</li><li>The number of its turns.</li><li>The distance separating them.</li></ul></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q4</span><span class="essay-question">Mention applications of mutual induction.</span><span class="essay-toggle">▾</span></div><div class="essay-ans">Transformer.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q5</span><span class="essay-question">What is the scientific base of a transformer?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">Mutual induction.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q6</span><span class="essay-question">Factors affecting coefficient of self-inductance.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ul><li>The geometry of the coil (size, length, and number of turns).</li><li>The distance between the turns.</li><li>The presence of an iron core (magnetic permeability).</li></ul></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q7</span><span class="essay-question">Factors affecting induced emf in a straight wire moving normal to a magnetic field.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ul><li>B: magnetic flux density (directly)</li><li>L: length of wire (directly)</li><li>v: velocity (directly)</li></ul></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q8</span><span class="essay-question">What is the scientific base (principle of operation) of an electric generator (dynamo)?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">Electromagnetic Induction.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q9</span><span class="essay-question">What are the essential parts of an AC generator?</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>A field magnet.</li><li>An armature.</li><li>Two slip rings.</li><li>Two graphite brushes.</li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q10</span><span class="essay-question">Why does a field magnet on a dynamo have concave poles?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">To produce a uniform magnetic field.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q11</span><span class="essay-question">Why do two carbon brushes touch each of the rings in the dynamo?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">To form the terminals of the external circuit.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q12</span><span class="essay-question">Factors affecting induced emf in a dynamo.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ul><li>B: magnetic flux density (directly)</li><li>A: area of coil (directly)</li><li>N: number of turns (directly)</li><li>f: frequency (directly)</li></ul></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q13</span><span class="essay-question">What is the function of a transformer?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">Convert low AC voltage into high AC voltage and vice versa.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q14</span><span class="essay-question">What is the scientific base (principle of operation) of a transformer?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">Mutual induction between two coils.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q15</span><span class="essay-question">How to minimize eddy currents in the transformer?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">Primary and secondary coils are insulated from each other and wound on a laminated soft iron core.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="unit-section" data-unit="3" id="unit3">
+  <div class="unit-header" style="--unit-color: var(--unit3)">
+    <div class="unit-num">3</div>
+    <div>
+      <div class="unit-title">Modern Physics</div>
+      <div class="unit-subtitle">Blackbody · Photoelectric Effect · X-rays · Laser · CRT</div>
+    </div>
+  </div>
+  <div class="accordion open">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-terms">Terms</span>
+        <span class="acc-title">Scientific Terms</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="acc-count">60 terms</span>
+        
+      </div>
+    </div>
+    <div class="acc-body">
+      <div class="table-wrapper">
+        <table class="terms-table">
+          <thead><tr><th>#</th><th>Definition / Description</th><th>Term / Answer</th></tr></thead>
+          <tbody>
+            <tr><td class="row-num">01</td><td class="row-q">Explains everything in our daily life and common experiences.</td><td class="row-a">Classical Physics (Macroscopic Model)</td></tr>
+            <tr><td class="row-num">02-05</td><td class="row-q">Deals with phenomena not directly observed in daily life; deals with atomic/subatomic systems; explains electronics; explains chemical reactions at molecule level.</td><td class="row-a">Modern (Quantum) Physics (Microscopic Model)</td></tr>
+            <tr><td class="row-num">06</td><td class="row-q">The transfer of heat by electromagnetic waves.</td><td class="row-a">Radiation</td></tr>
+            <tr><td class="row-num">07-10</td><td class="row-q">Vibrating electric and magnetic fields that move through space; don't need medium; transverse waves only; propagate at the same speed.</td><td class="row-a">Electromagnetic Waves</td></tr>
+            <tr><td class="row-num">11-12</td><td class="row-q">The part of the electromagnetic spectrum seen by the human eye; only a very small part of the spectrum.</td><td class="row-a">Visible Light</td></tr>
+            <tr><td class="row-num">13-14</td><td class="row-q">An ideal system that absorbs 100% of radiation hitting it, then re-emits it totally. All radiation remains trapped due to multiple reflections.</td><td class="row-a">Blackbody Radiation</td></tr>
+            <tr><td class="row-num">15-16</td><td class="row-q">A perfect absorber and perfect emitter. Reflects no radiation and appears perfectly black.</td><td class="row-a">Blackbody</td></tr>
+            <tr><td class="row-num">17</td><td class="row-q">The distribution of radiation intensity with wavelength.</td><td class="row-a">Planck's Distribution (Planck's Curve)</td></tr>
+            <tr><td class="row-num">19-20</td><td class="row-q">The wavelength at maximum radiation intensity is inversely proportional to temperature; λmax inversely proportional to T.</td><td class="row-a">Wien's Law</td></tr>
+            <tr><td class="row-num">21-22</td><td class="row-q">Map/photograph earth's surface; detect/image moving objects in the dark.</td><td class="row-a">Thermal Imaging / Remote Sensing / Night Vision</td></tr>
+            <tr><td class="row-num">23</td><td class="row-q">Emission of electrons from a heated metal's surface.</td><td class="row-a">Thermionic Emission</td></tr>
+            <tr><td class="row-num">24</td><td class="row-q">Emission of electrons from a metallic surface when light energy falls on it.</td><td class="row-a">Photoelectric Effect</td></tr>
+            <tr><td class="row-num">25</td><td class="row-q">The attractive force between positive ions and free electrons in metal that prevents electrons from leaving.</td><td class="row-a">Surface Potential Barrier</td></tr>
+            <tr><td class="row-num">26</td><td class="row-q">It is used to heat up the cathode.</td><td class="row-a">Filament</td></tr>
+            <tr><td class="row-num">27</td><td class="row-q">Controls the number of electrons in the electron beam.</td><td class="row-a">Grid</td></tr>
+            <tr><td class="row-num">28</td><td class="row-q">Used to accelerate the electron beam towards the screen.</td><td class="row-a">Anode</td></tr>
+            <tr><td class="row-num">29</td><td class="row-q">An instrument to produce a beam of electrons at high speed.</td><td class="row-a">Electron Gun</td></tr>
+            <tr><td class="row-num">30</td><td class="row-q">Emits green light when electrons strike it.</td><td class="row-a">Fluorescent Screen</td></tr>
+            <tr><td class="row-num">31</td><td class="row-q">Controls the electron beam by applying magnetic and electric fields.</td><td class="row-a">Deflecting System</td></tr>
+            <tr><td class="row-num">32</td><td class="row-q">Sweeps the screen point by point until the frame is completed.</td><td class="row-a">Raster</td></tr>
+            <tr><td class="row-num">33</td><td class="row-q">An electron released or ejected from a substance by photoelectric effect.</td><td class="row-a">Photoelectrons</td></tr>
+            <tr><td class="row-num">34</td><td class="row-q">The minimum energy needed to free electrons from the surface of the metal.</td><td class="row-a">Work Function of the Metal</td></tr>
+            <tr><td class="row-num">35</td><td class="row-q">A high-frequency photon collides with a free electron; photon frequency decreases and changes direction; electron velocity increases and changes direction.</td><td class="row-a">Compton Effect</td></tr>
+            <tr><td class="row-num">36-37</td><td class="row-q">Invisible EM waves of short wavelength (10⁻³ Å – 100 Å); located between gamma and UV rays; very high frequency and high penetrating power.</td><td class="row-a">X-rays</td></tr>
+            <tr><td class="row-num">38-39</td><td class="row-q">Contains all wavelengths regardless of target material; depends on accelerating voltage.</td><td class="row-a">Continuous Spectrum / Soft X-rays / Bremsstrahlung</td></tr>
+            <tr><td class="row-num">40-41</td><td class="row-q">Corresponding to specific wavelengths characteristic of the target material; doesn't depend on voltage but depends on target element.</td><td class="row-a">Line Spectrum / Characteristic Radiation</td></tr>
+            <tr><td class="row-num">42</td><td class="row-q">Acronym for Light Amplification by Stimulated Emission of Radiation.</td><td class="row-a">LASER</td></tr>
+            <tr><td class="row-num">43</td><td class="row-q">Transition of atom from ground state into excited state by external energy source.</td><td class="row-a">Excitation Process</td></tr>
+            <tr><td class="row-num">44</td><td class="row-q">Excited atom returns to ground state, emitting excitation energy as a photon.</td><td class="row-a">Relaxation Process</td></tr>
+            <tr><td class="row-num">45</td><td class="row-q">Atom relaxes from excited state spontaneously after lifetime (~10⁻⁸s), emitting a photon without external photon effect.</td><td class="row-a">Spontaneous Emission</td></tr>
+            <tr><td class="row-num">46</td><td class="row-q">An external photon of energy E₂–E₁ passes by an excited atom causing it to relax before lifetime is over.</td><td class="row-a">Stimulated Emission</td></tr>
+            <tr><td class="row-num">47</td><td class="row-q">Radiation is almost one wavelength (very narrow spectral width).</td><td class="row-a">Monochromaticity</td></tr>
+            <tr><td class="row-num">48</td><td class="row-q">Very small divergence of the beam; almost a parallel beam moving in one direction.</td><td class="row-a">Collimation</td></tr>
+            <tr><td class="row-num">49</td><td class="row-q">Photons are emitted at the same time in phase and in the same direction.</td><td class="row-a">Coherence</td></tr>
+            <tr><td class="row-num">50</td><td class="row-q">The intensity of light inversely proportional to the square of the distance.</td><td class="row-a">Inverse Square Law</td></tr>
+            <tr><td class="row-num">51-52</td><td class="row-q">Laser depends on driving atoms into population inversion. The number of atoms in excited state exceeds those in lower state.</td><td class="row-a">Theory of Laser Action / Population Inversion</td></tr>
+            <tr><td class="row-num">53</td><td class="row-q">Photons are increased in number going back and forth due to multiple reflections between two mirrors.</td><td class="row-a">Amplification</td></tr>
+            <tr><td class="row-num">54-55</td><td class="row-q">The effective material required to produce laser; collections of atoms/molecules/ions as solid/liquid/gas.</td><td class="row-a">Active Medium</td></tr>
+            <tr><td class="row-num">56</td><td class="row-q">Exciting active medium particles into high-energy state by an external energy source.</td><td class="row-a">Pumping Process</td></tr>
+            <tr><td class="row-num">57</td><td class="row-q">The container and activating catalyst for amplification.</td><td class="row-a">Resonant Cavity</td></tr>
+            <tr><td class="row-num">58</td><td class="row-q">Two parallel mirrors enclosing the active medium permitting multiple reflections.</td><td class="row-a">External Resonant Cavity</td></tr>
+            <tr><td class="row-num">59</td><td class="row-q">The ends of the active material are polished to act as mirrors.</td><td class="row-a">Internal Resonant Cavity</td></tr>
+            <tr><td class="row-num">60</td><td class="row-q">An excited energy level with a relatively long lifetime (~10⁻³s).</td><td class="row-a">Meta Stable Excited Level</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-units">Constants</span>
+        <span class="acc-title">Physical Constants</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px"></div>
+    </div>
+    <div class="acc-body">
+      <div class="simple-grid">
+        <div class="unit-pill"><span class="unit-label">Speed of Light (c)</span><span class="unit-val">3 × 10⁸ m/s</span></div>
+        <div class="unit-pill"><span class="unit-label">Planck's Constant (h)</span><span class="unit-val">6.626 × 10⁻³⁴ J·s</span></div>
+        <div class="unit-pill"><span class="unit-label">Charge of Electron (e)</span><span class="unit-val">1.6 × 10⁻¹⁹ C</span></div>
+        <div class="unit-pill"><span class="unit-label">Mass of Electron (mₑ)</span><span class="unit-val">9.11 × 10⁻³¹ kg</span></div>
+        <div class="unit-pill"><span class="unit-label">Electron Volt (eV)</span><span class="unit-val">1.6 × 10⁻¹⁹ J</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-rules">Rules</span>
+        <span class="acc-title">Mathematical Formulas</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px"></div>
+    </div>
+    <div class="acc-body">
+      <div class="simple-grid">
+        <div class="rule-card"><div class="rule-name">Energy of Photon</div><div class="rule-formula">E = h·f = h·c/λ   [J or eV]</div></div>
+        <div class="rule-card"><div class="rule-name">Wien's Law</div><div class="rule-formula">λmax · T = constant = 2.9 × 10⁻³ m·K</div></div>
+        <div class="rule-card"><div class="rule-name">Electron Energy (C.R.T)</div><div class="rule-formula">eV = ½mₑv²</div></div>
+        <div class="rule-card"><div class="rule-name">Photoelectric Effect</div><div class="rule-formula">E = W + KE_max
+h·f = h·f₀ + ½mₑv²</div></div>
+        <div class="rule-card"><div class="rule-name">Momentum of Photon</div><div class="rule-formula">p = h·f/c = h/λ = E/c</div></div>
+        <div class="rule-card"><div class="rule-name">Minimum Wavelength of X-rays</div><div class="rule-formula">λmin = h·c / (e·V)</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-compare">Compare</span>
+        <span class="acc-title">Comparisons</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="acc-count">3 tables</span>
+        
+      </div>
+    </div>
+    <div class="acc-body">
+      <div class="compare-section">
+        <div class="compare-card">
+          <div class="compare-title">Sun Radiation vs Lamp Radiation</div>
+          <div class="table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Point</th><th>Sun (T = 6000 K)</th><th>Lamp (T = 3000 K)</th></tr></thead>
+              <tbody>
+                <tr><td>λmax</td><td>~500 nm (visible region)</td><td>~1000 nm (infra-red region)</td></tr>
+                <tr><td>Emitted Energy Distribution</td><td>40% visible, 50% heat, 10% other</td><td>20% visible, 80% heat</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="compare-card">
+          <div class="compare-title">Spontaneous Emission vs Stimulated Emission</div>
+          <div class="table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Point</th><th>Spontaneous Emission</th><th>Stimulated Emission</th></tr></thead>
+              <tbody>
+                <tr><td>Occurrence</td><td>After lifetime (~10⁻⁸s), no external photon</td><td>External photon of E₂–E₁ triggers it before lifetime</td></tr>
+                <tr><td>Wavelengths</td><td>Wide range of wavelengths</td><td>Monochromatic (single wavelength)</td></tr>
+                <tr><td>Propagation</td><td>Random</td><td>Coherent, one direction, collimated</td></tr>
+                <tr><td>Intensity</td><td>Decreases by inverse square law</td><td>Constant over long distances</td></tr>
+                <tr><td>Source</td><td>Ordinary light sources</td><td>Laser sources</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="compare-card">
+          <div class="compare-title">Laser Beam vs Ordinary Light</div>
+          <div class="table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Point</th><th>Laser Beam</th><th>Ordinary Light</th></tr></thead>
+              <tbody>
+                <tr><td>Monochromaticity</td><td>Very narrow wavelength range (one color)</td><td>Band of wavelengths</td></tr>
+                <tr><td>Collimation</td><td>Constant diameter over long distance</td><td>Diameter increases with distance</td></tr>
+                <tr><td>Coherence</td><td>In phase and same direction</td><td>Random, incoherent, varying phase</td></tr>
+                <tr><td>Intensity</td><td>Does NOT obey inverse square law</td><td>Obeys inverse square law</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-essay">Essay</span>
+        <span class="acc-title">Essay Questions</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="acc-count">30 questions</span>
+        
+      </div>
+    </div>
+    <div class="acc-body">
+      <div class="essay-list">
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q1</span><span class="essay-question">What does wave-particle duality mean?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">The wave behaves as a particle and the particle behaves as a wave.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q2</span><span class="essay-question">What are the properties of the electromagnetic spectrum?</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>Vibrating electric and magnetic fields that move through space or any medium.</li><li>Transverse waves only.</li><li>Don't need medium to travel through.</li><li>Propagate in space at the same speed (c = 3×10⁸ m/s) while varying in frequency and wavelength; propagate in material media with smaller velocity depending on the medium.</li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q3</span><span class="essay-question">What are the wavelengths of the visible light spectrum?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">400 nm – 700 nm (approximately)</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q4</span><span class="essay-question">Why do different objects look different colors?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">Because the dominant color of light (wavelength) emitted from these sources varies according to the temperature and properties of the object.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q5</span><span class="essay-question">What happens to object color as temperature changes?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">At low temperatures, wavelengths are mainly in the infrared region. As temperature increases, the object begins to glow red. At high temperatures, it appears white.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q6</span><span class="essay-question">Why does an enclosed cavity appear black?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">Because all radiation within the cavity remains trapped due to multiple reflections.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q7</span><span class="essay-question">Mention applications of remote sensing.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>Satellites and airborne which map and photograph the earth's surface.</li><li>Military purposes such as night vision systems.</li><li>In medicine (tomography – embryology).</li><li>In criminology (heat radiated from a person remains even after they leave).</li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q8</span><span class="essay-question">Why did classical physics fail to explain blackbody radiation?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">Because classical physics considers radiation as electromagnetic waves (wave theory), so intensity should increase with increasing frequency, becoming infinite at high frequencies. But experimental data shows intensity decreases at high frequency.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q9</span><span class="essay-question">What is Planck's explanation of blackbody radiation?</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>Radiation is made up of small units (packets) of energy called quanta (photons).</li><li>Energy of EM waves is quantized (E = nhf) rather than continuous.</li><li>Energy could be gained or lost only in integral multiples.</li><li>The atom does not radiate as long as it remains in one energy level.</li><li>If atom shifts from high to lower energy level, it emits a photon with energy E = hf.</li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q10</span><span class="essay-question">What are the functions of C.R.T parts?</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>Filament: Heat up the cathode.</li><li>Grid: Control the number of electrons in the beam.</li><li>Anode: Accelerate the electron beam towards the screen.</li><li>Electron gun: Produce a beam of electrons at high speed.</li><li>Fluorescent Screen: Emits green light when electrons strike it.</li><li>Deflecting system: Sweep the screen point by point (raster).</li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q11</span><span class="essay-question">Effect of increasing frequency of incident light (if > work function) on: (1) KE of released electron, (2) Photocurrent intensity.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>Kinetic energy of released electron: <strong>Increases.</strong></li><li>Intensity of photocurrent: <strong>Remains constant (unchanged).</strong></li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q12</span><span class="essay-question">Effect of increasing intensity of incident light (if > work function) on: (1) KE of released electron, (2) Photocurrent intensity.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>Kinetic energy of released electron: <strong>Remains constant (unchanged).</strong></li><li>Intensity of photocurrent: <strong>Increases.</strong></li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q13</span><span class="essay-question">What are the basic properties of photons?</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>Electromagnetic radiation travels as discrete packets of energy (quanta).</li><li>Travel in straight lines at speed of light (c = 3×10⁸ m/s).</li><li>Energy: E = hf = hc/λ</li><li>Momentum: p = hf/c = h/λ</li><li>Electrically neutral; not deflected by electric or magnetic fields.</li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q14</span><span class="essay-question">What are the properties of X-rays?</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>They can penetrate media easily.</li><li>They can ionize gases.</li><li>They diffract in crystals.</li><li>They affect sensitive photographic plates.</li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q15</span><span class="essay-question">What is the function of components in Coolidge tube?</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>Filament (cathode): source of electrons, made of tungsten, coiled for high resistance.</li><li>Solid copper rod (anode).</li><li>Heavy element (Molybdenum) as target.</li><li>External high DC voltage source.</li><li>Battery supplying high current to heat the cathode filament.</li><li>Vacuum tube to avoid collisions with air molecules.</li><li>Cooling fins to reduce heating effect.</li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q16</span><span class="essay-question">How to produce X-rays using Coolidge tube?</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>Electrons emitted from the filament experience the potential difference and accelerate towards the target.</li><li>When electrons collide with the target element, their kinetic energy converts to X-rays.</li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q17</span><span class="essay-question">What are the kinds of X-ray spectrum?</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li><strong>Continuous Spectrum:</strong> all wavelengths regardless of target material.</li><li><strong>Line Spectrum (Characteristic Radiation):</strong> specific wavelengths characteristic of the target material.</li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q18</span><span class="essay-question">If voltage between cathode and anode increases in Coolidge tube, effect on: (1) Continuous radiation, (2) Characteristic radiation.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>Minimum wavelength of continuous radiation <strong>decreases.</strong></li><li>Wavelengths of characteristic radiation <strong>don't change.</strong></li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q19</span><span class="essay-question">If atomic number of target element increases, effect on: (1) Continuous radiation, (2) Characteristic radiation.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>Wavelengths of continuous radiation <strong>don't change.</strong></li><li>Wavelengths of characteristic radiation <strong>decrease.</strong></li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q20</span><span class="essay-question">Why are X-rays used to study crystalline structure?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">X-rays have the ability to diffract as they penetrate materials.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q21</span><span class="essay-question">Why are X-rays used to detect defects in metallic structures?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">X-rays have great penetrating power.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q22</span><span class="essay-question">Mention applications of X-rays.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>Studying the crystalline structure.</li><li>Detecting defects in metallic structures.</li><li>In medicine: imaging bones and fractures.</li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q23</span><span class="essay-question">What does LASER stand for?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">Light Amplification by Stimulated Emission of Radiation.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q24</span><span class="essay-question">What are the properties (characteristics) of a laser beam?</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>Monochromaticity.</li><li>Collimation.</li><li>Coherence.</li><li>Intensity doesn't obey the inverse square law.</li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q25</span><span class="essay-question">Functions of the three main components to produce laser beam.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li><strong>Active Medium:</strong> the effective material required to produce laser.</li><li><strong>Source of Energy:</strong> excites active medium particles into high energy state.</li><li><strong>Resonant Cavity:</strong> the container and activating catalyst for amplification.</li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q26</span><span class="essay-question">What are the types of energy sources for laser?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">1. Electric energy &nbsp; 2. Optical energy &nbsp; 3. Thermal energy &nbsp; 4. Chemical energy</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q27</span><span class="essay-question">What are the kinds of resonant cavity?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">1. External resonant cavity. &nbsp; 2. Internal resonant cavity.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q28</span><span class="essay-question">What is the theory of laser action?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">Driving the atoms of the active medium into a state of population inversion.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q29</span><span class="essay-question">What are the conditions necessary for laser action?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">1. Population inversion. &nbsp; 2. Stimulated emission.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q30</span><span class="essay-question">Mention applications of laser.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>Medical: treatment of far and near sightedness.</li><li>Industrial: melt and evaporate iron.</li><li>Military: Laser Radar.</li><li>Scientific Research: space research.</li><li>Daily: communication, laser printers, holography.</li></ol></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="unit-section" data-unit="4" id="unit4">
+  <div class="unit-header" style="--unit-color: var(--unit4)">
+    <div class="unit-num">4</div>
+    <div>
+      <div class="unit-title">Modern Electronics</div>
+      <div class="unit-subtitle">Semiconductors · PN Junction · Transistor · Logic Gates</div>
+    </div>
+  </div>
+  <div class="accordion open">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-terms">Terms</span>
+        <span class="acc-title">Scientific Terms</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="acc-count">38 terms</span>
+        
+      </div>
+    </div>
+    <div class="acc-body">
+      <div class="table-wrapper">
+        <table class="terms-table">
+          <thead><tr><th>#</th><th>Definition / Description</th><th>Term / Answer</th></tr></thead>
+          <tbody>
+            <tr><td class="row-num">01</td><td class="row-q">Materials with conductivities somewhere between conductors and insulators.</td><td class="row-a">Semiconductors</td></tr>
+            <tr><td class="row-num">02</td><td class="row-q">A regular arrangement of atoms in the solid state.</td><td class="row-a">The Crystal</td></tr>
+            <tr><td class="row-num">03</td><td class="row-q">The vacancy that an electron leaves behind in a broken covalent bond.</td><td class="row-a">The Hole</td></tr>
+            <tr><td class="row-num">04-05</td><td class="row-q">The number of bonds broken per second equals the number mended; fixed number of free electrons and holes remain constant at every temperature.</td><td class="row-a">Thermal / Dynamic Equilibrium</td></tr>
+            <tr><td class="row-num">06</td><td class="row-q">Atoms having 3 electrons in the outermost shell.</td><td class="row-a">Trivalent Impurity Atoms</td></tr>
+            <tr><td class="row-num">07</td><td class="row-q">Atoms having 5 electrons in the outermost shell.</td><td class="row-a">Pentavalent Impurity Atoms</td></tr>
+            <tr><td class="row-num">08</td><td class="row-q">Impurity atoms that create a hole capable of accepting an electron.</td><td class="row-a">Acceptor Atom</td></tr>
+            <tr><td class="row-num">09</td><td class="row-q">Impurity atoms that donate a free electron in the crystal.</td><td class="row-a">Donor Atom</td></tr>
+            <tr><td class="row-num">10</td><td class="row-q">Crystal type where holes are majority carriers and free electrons are minority carriers.</td><td class="row-a">P-Type Semiconductor</td></tr>
+            <tr><td class="row-num">11</td><td class="row-q">Crystal type where free electrons are majority carriers and holes are minority carriers.</td><td class="row-a">N-Type Semiconductor</td></tr>
+            <tr><td class="row-num">12</td><td class="row-q">A junction formed by contact of P-Type Semiconductor with N-Type Semiconductor.</td><td class="row-a">PN Junction (Diode)</td></tr>
+            <tr><td class="row-num">13</td><td class="row-q">Current arising from motion of free electrons and holes crossing the PN junction (directed from holes to electrons).</td><td class="row-a">Diffusion Current</td></tr>
+            <tr><td class="row-num">14</td><td class="row-q">Current arising from the electric field between donor and acceptor ions in the depletion region (directed from positive to negative ions).</td><td class="row-a">Drift Current</td></tr>
+            <tr><td class="row-num">15</td><td class="row-q">Region composed of positive ions on one side and negative ions on the other; no electrons or holes exist in this region.</td><td class="row-a">Transition / Depletion Region</td></tr>
+            <tr><td class="row-num">16</td><td class="row-q">P-type connected to positive terminal, N-type to negative terminal of a battery.</td><td class="row-a">Forward Connection / Forward Bias</td></tr>
+            <tr><td class="row-num">17</td><td class="row-q">N-type connected to positive terminal, P-type to negative terminal of a battery.</td><td class="row-a">Reverse Connection / Reverse Bias</td></tr>
+            <tr><td class="row-num">18</td><td class="row-q">Very small current flow through the diode when resistance becomes large (infinite).</td><td class="row-a">Leakage Current</td></tr>
+            <tr><td class="row-num">19</td><td class="row-q">A process to convert AC into DC by using a diode.</td><td class="row-a">Rectification Process</td></tr>
+            <tr><td class="row-num">20</td><td class="row-q">A bipolar junction (BJT) consisting of three regions of doped semiconductors.</td><td class="row-a">Transistor</td></tr>
+            <tr><td class="row-num">21</td><td class="row-q">Heavily doped region that emits charge carriers.</td><td class="row-a">Emitter</td></tr>
+            <tr><td class="row-num">22</td><td class="row-q">Lightly doped region used as a filter or controller in BJT.</td><td class="row-a">Base</td></tr>
+            <tr><td class="row-num">23</td><td class="row-q">Moderately doped region that collects charge carriers.</td><td class="row-a">Collector</td></tr>
+            <tr><td class="row-num">24</td><td class="row-q">Current flowing in the emitter region due to flow of charges.</td><td class="row-a">Emitter Current (Iₑ)</td></tr>
+            <tr><td class="row-num">25</td><td class="row-q">Current produced by recombination of electrons and holes.</td><td class="row-a">Base Current (Iᵦ)</td></tr>
+            <tr><td class="row-num">26</td><td class="row-q">Current generated in the collector region due to flow of charges.</td><td class="row-a">Collector Current (Iᶜ)</td></tr>
+            <tr><td class="row-num">27</td><td class="row-q">The process where free electrons fill vacant holes.</td><td class="row-a">Recombination Process</td></tr>
+            <tr><td class="row-num">28</td><td class="row-q">Represents the percentage of electrons diffusing across bipolar junction.</td><td class="row-a">α (alpha) = Iᶜ/Iₑ</td></tr>
+            <tr><td class="row-num">29-30</td><td class="row-q">Ratio of collector current to emitter current; ratio of collector current to base current.</td><td class="row-a">α = Iᶜ/Iₑ &nbsp;|&nbsp; β = Iᶜ/Iᵦ (Current Gain)</td></tr>
+            <tr><td class="row-num">31</td><td class="row-q">All electronic systems deal with natural quantities and convert them to continuous electrical signals.</td><td class="row-a">Analog Electronics</td></tr>
+            <tr><td class="row-num">32</td><td class="row-q">Electrical signal is not continuous but coded in terms of two possible values (0 or 1 – binary system).</td><td class="row-a">Digital Electronics</td></tr>
+            <tr><td class="row-num">33</td><td class="row-q">The circuits that perform logic operations.</td><td class="row-a">Logic Gates</td></tr>
+            <tr><td class="row-num">34</td><td class="row-q">A gate that reverses the input signal.</td><td class="row-a">NOT Gate</td></tr>
+            <tr><td class="row-num">35</td><td class="row-q">Gives high output (1) if one or more inputs are high.</td><td class="row-a">OR Gate</td></tr>
+            <tr><td class="row-num">36</td><td class="row-q">Gives high output (1) only if ALL inputs are high.</td><td class="row-a">AND Gate</td></tr>
+            <tr><td class="row-num">37</td><td class="row-q">Gives low output (0) only if ALL inputs are high.</td><td class="row-a">NAND Gate</td></tr>
+            <tr><td class="row-num">38</td><td class="row-q">Gives high output (1) only if ALL inputs are low.</td><td class="row-a">NOR Gate</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-compare">Logic</span>
+        <span class="acc-title">Logic Gates Truth Tables</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="acc-count">4 gates</span>
+        
+      </div>
+    </div>
+    <div class="acc-body">
+      <div class="compare-section">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px">
+          <div class="compare-card">
+            <div class="compare-title">AND Gate</div>
+            <div class="table-wrapper">
+              <table class="compare-table">
+                <thead><tr><th>A</th><th>B</th><th>Output</th></tr></thead>
+                <tbody>
+                  <tr><td>0</td><td>0</td><td style="color:var(--red)">0</td></tr>
+                  <tr><td>0</td><td>1</td><td style="color:var(--red)">0</td></tr>
+                  <tr><td>1</td><td>0</td><td style="color:var(--red)">0</td></tr>
+                  <tr><td>1</td><td>1</td><td style="color:var(--green)">1</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="compare-card">
+            <div class="compare-title">NAND Gate</div>
+            <div class="table-wrapper">
+              <table class="compare-table">
+                <thead><tr><th>A</th><th>B</th><th>Output</th></tr></thead>
+                <tbody>
+                  <tr><td>0</td><td>0</td><td style="color:var(--green)">1</td></tr>
+                  <tr><td>0</td><td>1</td><td style="color:var(--green)">1</td></tr>
+                  <tr><td>1</td><td>0</td><td style="color:var(--green)">1</td></tr>
+                  <tr><td>1</td><td>1</td><td style="color:var(--red)">0</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="compare-card">
+            <div class="compare-title">OR Gate</div>
+            <div class="table-wrapper">
+              <table class="compare-table">
+                <thead><tr><th>A</th><th>B</th><th>Output</th></tr></thead>
+                <tbody>
+                  <tr><td>0</td><td>0</td><td style="color:var(--red)">0</td></tr>
+                  <tr><td>0</td><td>1</td><td style="color:var(--green)">1</td></tr>
+                  <tr><td>1</td><td>0</td><td style="color:var(--green)">1</td></tr>
+                  <tr><td>1</td><td>1</td><td style="color:var(--green)">1</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="compare-card">
+            <div class="compare-title">NOR Gate</div>
+            <div class="table-wrapper">
+              <table class="compare-table">
+                <thead><tr><th>A</th><th>B</th><th>Output</th></tr></thead>
+                <tbody>
+                  <tr><td>0</td><td>0</td><td style="color:var(--green)">1</td></tr>
+                  <tr><td>0</td><td>1</td><td style="color:var(--red)">0</td></tr>
+                  <tr><td>1</td><td>0</td><td style="color:var(--red)">0</td></tr>
+                  <tr><td>1</td><td>1</td><td style="color:var(--red)">0</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="acc-badge badge-essay">Essay</span>
+        <span class="acc-title">Essay Questions</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="acc-count">9 questions</span>
+        
+      </div>
+    </div>
+    <div class="acc-body">
+      <div class="essay-list">
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q1</span><span class="essay-question">State two methods to increase the conductivity of semiconductors.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ol><li>Increasing the temperature.</li><li>Doping process.</li></ol></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q2</span><span class="essay-question">Why at very low temperature, pure silicon crystal is an insulator.</span><span class="essay-toggle">▾</span></div><div class="essay-ans">Because all bonds in the crystal are unbroken and it has high resistance to current flow (no free electrons). At 0K, Silicon behaves as a perfect insulator.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q3</span><span class="essay-question">Compare forward bias and reverse bias effect on thickness of depletion layer.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ul><li><strong>Forward bias:</strong> the depletion layer is narrow because the battery field is opposite to the internal field.</li><li><strong>Reverse bias:</strong> the depletion layer is wide because the battery field aids the internal field.</li></ul></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q4</span><span class="essay-question">Mention two uses of diodes.</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ul><li>Current rectifier.</li><li>Switch.</li></ul></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q5</span><span class="essay-question">How to use ohmmeter to distinguish between ohmic resistance and PN junction?</span><span class="essay-toggle">▾</span></div><div class="essay-ans"><ul><li><strong>Ohmic resistance:</strong> magnitude of current is the same regardless of voltage polarity.</li><li><strong>PN junction:</strong> small resistance in forward bias, large resistance in reverse bias.</li></ul></div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q6</span><span class="essay-question">What does BJT stand for?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">Bipolar Junction Transistor.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q7</span><span class="essay-question">What is the main use of a transistor?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">As an amplifier.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q8</span><span class="essay-question">What is the basic idea of transistor action as an amplifier?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">Any small change in the base current I_B will result in a much larger change in the collector current I_C.</div></div>
+        <div class="essay-card"><div class="essay-q" onclick="toggleEssay(this)"><span class="essay-num">Q9</span><span class="essay-question">Why are most modern electronic devices made from semiconductors?</span><span class="essay-toggle">▾</span></div><div class="essay-ans">Because they are sensitive to environmental conditions.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+<div class="exam-modal" id="examModal">
+  <div class="exam-modal-header">
+    <div class="exam-modal-title"><i data-lucide="file-text"></i> Custom Exam</div>
+    <button class="exam-modal-close" onclick="document.getElementById('examModal').classList.remove('active')">Close</button>
+  </div>
+  <div class="exam-modal-content" id="examContent">
+  </div>
+</div>
+<button id="backToTop" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Back to Top"><i data-lucide="chevron-up"></i></button>
+<script src="assets/js/script.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>
